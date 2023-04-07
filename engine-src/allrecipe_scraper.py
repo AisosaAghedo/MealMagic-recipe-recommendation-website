@@ -29,7 +29,9 @@ class AllrecipeScraper:
         """Initialize the class"""
         self.url = url
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"}
+            "User-Agent":
+            "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0"
+        }
 
     def get_html(self) -> str:
         """Get the html of specified url"""
@@ -43,14 +45,16 @@ class AllrecipeScraper:
         soup = BeautifulSoup(html, 'html.parser')
         data = {}
         data['recipe_name'] = soup.find('h1').text.strip()
-        img = soup.find('img')
-        data['recipe_image_url'] = img.get('src')
+        img = soup.find_all('img', {'class': 'universal-image__image'})
+        data['recipe_image_url'] = img[0].get('data-src')
         ingredients = soup.find_all(
             'li', {"class": "mntl-structured-ingredients__list-item"})
-        data['ingredients'] = [ingredient.text.strip()
-                               for ingredient in ingredients]
+        data['ingredients'] = [
+            ingredient.text.strip() for ingredient in ingredients
+        ]
         instructions = soup.find_all('p', {"class": "mntl-sc-block-html"})
-        data['instructions'] = [instruction.text.strip()
-                                for instruction in instructions]
+        data['instructions'] = [
+            instruction.text.strip() for instruction in instructions
+        ]
 
         return data

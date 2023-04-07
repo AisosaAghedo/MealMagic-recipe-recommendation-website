@@ -7,18 +7,22 @@
 import csv
 from allrecipe_scraper import AllrecipeScraper
 import time
+import os
 
-
-RECIPE_LINKS = 'allrecipe_recipe_links.csv'
-RECIPE = 'allrecipe_recipes.csv'
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
+                                          os.pardir))
+RECIPE_LINKS = os.path.join(parent_dir, 'input', 'allrecipe_recipe_links.csv')
+RECIPE = os.path.join(parent_dir, 'input', 'allrecipe_recipes.csv')
 
 
 def data_collector():
     """
         Collects and save all recipe information of allrecipe
     """
-    headers = ["Recipe_link", "Recipe_name", "Recipe_img",
-               "Recipe_ingredients", "Recipe_directions"]
+    headers = [
+        "Recipe_link", "Recipe_name", "Recipe_img", "Recipe_ingredients",
+        "Recipe_directions"
+    ]
     with open(RECIPE_LINKS, 'r', newline='') as file:
         reader = csv.reader(file)
         list_of_links = list(reader)
