@@ -33,7 +33,7 @@ def saved_recipes(user_id):
             del req['id']
 
         req['user_id'] = user_id
-        recipe = Post(**req)
+        recipe = Recipe(**req)
         recipe.save()
         return jsonify(recipe.to_dict()), 201
 
