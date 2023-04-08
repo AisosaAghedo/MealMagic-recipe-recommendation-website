@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" Train the model and encode it
+"""
+
 import pandas as pd
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
