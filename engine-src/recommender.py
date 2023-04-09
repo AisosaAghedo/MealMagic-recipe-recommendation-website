@@ -35,7 +35,6 @@ def recommend_recipes(ingredients):
         tfidf_recipe = pickle.load(file)
 
     # Parse input ingredients and transform into Tfidf vector
-    #parsed_ingredients = ingredient_parser("'[" + ingredients + "]'")
     parsed_ingredients = " ".join(ingredients.split(",")).encode('utf-8')
     input_vector = tfidf.transform([parsed_ingredients])
 
