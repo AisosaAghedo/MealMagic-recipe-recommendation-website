@@ -20,7 +20,7 @@ class User(BaseModel, Base, UserMixin):
     confirmed = Column(Boolean, default=False)
     password = Column(String(60), nullable=False)
     profile_picture = Column(String(120), default=location)
-    saved_recipes = relationship("Recipe", backref="saver", cascade = "all, delete, delete-orphan")
+    saved_recipes = relationship("Recipe", back_populates='users', secondary='link')
     reviews = relationship("Review", backref="reviewer", cascade = "all, delete, delete-orphan")
     ratings = relationship("Rating", backref="rater", cascade = "all, delete, delete-orphan")
 

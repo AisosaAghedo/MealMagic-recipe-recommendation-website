@@ -4,6 +4,7 @@ Contains the class DBStorage
 """
 
 import models
+from models.link import Link
 from models.base_model import BaseModel, Base
 from models.review import Review
 from models.rating import Rating
@@ -88,3 +89,21 @@ class DBStorage:
         if cls is None:
             return len(self.all())
         return len(self.all(cls))
+
+    def similar(self, cls, user_id, query):
+        """
+        returns a list of objects similar to
+        the query(arg) and having the user_id(arg)
+        """
+        user = self.get(user_id)
+        dict_list = []
+        if type(query) != str or len(query) == 0:
+            return None
+        if cls is None:
+            return None
+        query_string = '%' + query + '%'
+        results = self.__session.query(cls).filter(cls.name.ilike(query_string))
+        for result in results:
+            if result in user.saved_recipes:
+                dict_list.append(result.to_dict())
+        return dict_list

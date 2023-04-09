@@ -34,7 +34,7 @@ def get_and_post_users():
         return jsonify(users)
 
     else:
-        url_string = '/users/validate/'
+        #url_string = '/users/validate/'
         req = request.get_json()
 
         if req is None:
