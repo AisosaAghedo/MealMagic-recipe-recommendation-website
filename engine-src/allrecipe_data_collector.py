@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """
-    This module data_collector function that is responsible
-    recipe data and saving it on csv file
+This module contains the data_collector function that is responsible
+for collecting recipe data and saving it to a CSV file.
 """
 
 import csv
-from allrecipe_scraper import AllrecipeScraper
 import time
 import os
+from allrecipe_scraper import AllrecipeScraper
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                           os.pardir))
@@ -17,12 +17,13 @@ RECIPE = os.path.join(parent_dir, 'input', 'allrecipe_recipes.csv')
 
 def data_collector():
     """
-        Collects and save all recipe information of allrecipe
+    Collects and saves all recipe information from Allrecipes.
     """
     headers = [
         "Recipe_link", "Recipe_name", "Recipe_img", "Recipe_ingredients",
         "Recipe_directions"
     ]
+
     with open(RECIPE_LINKS, 'r', newline='') as file:
         reader = csv.reader(file)
         list_of_links = list(reader)
@@ -50,4 +51,5 @@ def data_collector():
             writer.writerow(row)
 
 
-data_collector()
+if __name__ == '__main__':
+    data_collector()
