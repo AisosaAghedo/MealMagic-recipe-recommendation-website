@@ -47,4 +47,4 @@ def recommend_recipes(ingredients):
     recommended_recipes = recipe_df.iloc[similar_recipe_indices.ravel()]
     recommended_recipes_list = recommended_recipes[['Recipe_name'
                                                     ]].values.tolist()
-    return recommended_recipes_list[::-1][:9]
+    return recommended_recipes_list[::-1][:10]
