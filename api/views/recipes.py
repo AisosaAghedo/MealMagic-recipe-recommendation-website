@@ -4,7 +4,7 @@ api endpoints for recipes model
 """
 from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
-
+#from recommender import recommend_recipes
 
 @app_views("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
 def saved_recipes(user_id):
@@ -42,13 +42,37 @@ def saved_recipes(user_id):
         return jsonify(recipe.to_dict()), 201
 
 
-@app_views.route('/recipes/<recipe_name>', methods=['GET'], strict_slashes=False)
-def get_recipe(recipe_name):
+@app_views('/get_recipes', strict_slashes=False)
+def find_recipe():
     """
-    GET: gets a recipe using its name
+    finds recipe from db using passed name in json
     """
-    #implement later on getting data from webscraping
-    pass
+    req = request.get_json()
+
+    if req is None:
+        abort(400, description="Not a json")
+    if req.get('name') is None:
+            abort(400, description='Missing name')
+    if type(req['name']) is not str:
+        abort(400, description="should be a string of the recipe's name")
+    recipe = storage.get(Recipe, None, req['name'])
+    if recipe is None:
+        abort(404)
+    return jsonify(recipe.to_dict())
+
+
+'''
+@app_views.route('/recipes/<ingredients>', methods=['GET'], strict_slashes=False)
+def get_recipe(ingredients):
+    """
+    GET: gets a suggested recipe using entered ingredients
+    """
+    if type(ingredients) is not str:
+        abort(400, description='argument should be a string of ingredients comma separated')
+
+    recipe_suggestions = {'suggested_recipe': recommended_recipes(ingredients)}
+    return jsonify(recipe_suggestions)
+'''
 
 
 @app_views.route('/recipe_search/<user_id>/<query>',
@@ -61,14 +85,28 @@ def search_recipe(user_id, query):
     return results
 
 
-@app_views("/recipes_rating/<recipe_name>", methods=['POST'], strict_slashes=False)
-def get_average_rating(recipe_name):
+@app_views("/recipes_rating", strict_slashes=False)
+def get_average_rating():
     """
     gets average rating on a recipe
     """
-    recipe = storage.get(Recipe, None, recipe_name)
+     req = request.get_json()
+
+    if req is None:
+        abort(400, description="Not a json")
+    if req.get('name') is None:
+            abort(400, description='Missing name')
+    if type(req['name']) is not str:
+        abort(400, description="should be a string of the recipe's name")
+
+    recipe = storage.get(Recipe, None, req['name'])
+    if recipe is None:
+        abort(404)
     total_rating = 0
 
     for rating in recipe.ratings:
         total_rating += rating.rate_number
-    return total_rating / len(recipe.ratings)
+    try:
+        return total_rating / len(recipe.ratings)
+    except ZeroDivisionError:
+        return 0
