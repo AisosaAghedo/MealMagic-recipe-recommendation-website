@@ -95,8 +95,11 @@ class DBStorage:
         returns a list of objects similar to
         the query(arg) and having the user_id(arg)
         """
-        user = self.get(user_id)
+        user = self.get(User, user_id)
         dict_list = []
+        if user is None:
+            return None
+            return None
         if type(query) != str or len(query) == 0:
             return None
         if cls is None:

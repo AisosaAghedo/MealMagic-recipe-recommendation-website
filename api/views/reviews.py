@@ -22,7 +22,7 @@ def get_reviews(recipe_id):
     return jsonify(reviews)
 
 
-@app_views.route('/posts/<recipe_id>/<user_id>/reviews',
+@app_views.route('/recipes/<recipe_id>/<user_id>/reviews',
                  methods=['POST'], strict_slashes=False)
 def user_review(recipe_id, user_id):
     """

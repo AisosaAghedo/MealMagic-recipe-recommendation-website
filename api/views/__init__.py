@@ -11,3 +11,6 @@ from models.user import User
 from models.review import Review
 
 from .users import *
+from .recipes import *
+from .ratings import *
+from .reviews import *
