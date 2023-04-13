@@ -39,14 +39,14 @@ def get_and_post_users():
 
         if req is None:
             abort(400, description="Not a json")
-        if req.get('name') is None:
-            abort(400, description="Missing name")
-        if storage.get(User, None, req['name']):
-            abort(400, description="Username is in use")
-        if req.get("password") is None:
-            abort(400, description="Missing password")
         if req.get('email') is None:
             abort(400, description="Missing email")
+        if storage.get(User, email=req['email']):
+            abort(400, description="Email is in use")
+        if req.get("password") is None:
+            abort(400, description="Missing password")
+        if req.get('name') is None:
+            abort(400, description="Missing name")
         user = User(**req)
         user.save()
         #send_email(user.email, url_string + user.id)

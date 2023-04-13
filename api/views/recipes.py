@@ -4,6 +4,8 @@ api endpoints for recipes model
 """
 from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
+from helpers import cache
+import json
 #from recommender import recommend_recipes
 
 @app_views.route("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
@@ -55,10 +57,21 @@ def find_recipe():
             abort(400, description='Missing name')
     if type(req['name']) is not str:
         abort(400, description="should be a string of the recipe's name")
-    recipe = storage.get(Recipe, None, req['name'])
+
+    value = cache.get_value(req['name'])
+    # checks if the recipe is cached in redis if yes, converts from string to json
+    if value:
+        recipe = json.loads(value)
+    else:
+        # caches the recipe in redis otherwise as string
+        recipe = storage.get(Recipe, None, req['name'])
+        if recipe is not None:
+            recipe = recipe.to_dict()
+            del recipe['users']
+            cache.set_value(req['name'], json.dumps(recipe))
     if recipe is None:
         abort(404)
-    return jsonify(recipe.to_dict())
+    return jsonify(recipe)
 
 
 '''

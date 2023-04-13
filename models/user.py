@@ -15,8 +15,8 @@ class User(BaseModel, Base, UserMixin):
     """Representation of a user """
     __tablename__ = 'users'
 
-    name = Column(String(50), nullable=False, unique=True)
-    email =  Column(String(50), nullable=False)
+    name = Column(String(50), nullable=False)
+    email =  Column(String(50), nullable=False, unique=True)
     confirmed = Column(Boolean, default=False)
     password = Column(String(60), nullable=False)
     profile_picture = Column(String(120), default=location)
