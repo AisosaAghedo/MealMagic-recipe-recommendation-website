@@ -1,0 +1,82 @@
+*{
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+}
+p{
+font-weight: 300;
+margin-bottom: 1rem;
+background-color: #7439db;
+border-radius: 10px;
+padding: 0.5rem;
+}
+.home-container{
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: flex-end;
+}
+.home-container .details{
+ margin-top: 2rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ padding-top: 2rem;
+ border-radius: 10px;
+ margin: 0.5rem;
+ margin-top: 0.02rem;
+}
+label {
+    text-align: left;
+    padding: 0.2rem 0;
+}
+select{
+    margin: 0.3rem 0;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    color: #7439db;
+}
+option{
+    border: none;
+    outline: none;
+}
+.home-btn{
+    border: none;
+    background-color: #7439db;
+    padding: 0.5rem;
+    border-radius: 10px;
+    cursor: pointer; 
+    color: white;
+    margin-top: 2rem;
+    
+}
+/*.details{
+ display: flex;
+ flex-direction: column;
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    border-radius: 10px;
+    margin: 0.5rem;
+    margin-top: 0.02rem;
+}
+label {
+    text-align: left;
+    padding: 0.2rem 0;
+}
+option{
+    margin: 0.3rem 0;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    color: #7439db;
+}
+
+input:focus{
+    border: none;
+    outline: none;
+}*/
