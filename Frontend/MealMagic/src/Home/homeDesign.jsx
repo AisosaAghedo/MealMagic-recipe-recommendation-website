@@ -12,19 +12,23 @@ export default function HomeDesign() {
         </select>
         <label htmlFor="cuisine">Cuisine</label>
         <select name="Cuisine" id="cuisine">
-          <option value="Nigeria"> Nigeria Cuisine</option>
+          <option value="Nigeria"> Nigerian Cuisine</option>
           <option value="Ethiopia">Ethiopian Cuisine</option>
           <option value="french">French Cuisine</option>
           <option value="china">Chinese Cuisine</option>
           <option value="italy">Italian Cuisine</option>
         </select>
-        <label htmlFor="Ingrediets">
+        <label htmlFor="Ingrediets" className="label">
           plese enter list of ingredients available
         </label>
         <input type="text" placeholder="Ingredients" />
         <button type="submit" className="home-btn">
           Get Recommendation
         </button>
+      </div>
+
+      <div className="available">
+        pepper, salt and other common ingredients are assummed to be available.
       </div>
     </div>
   );

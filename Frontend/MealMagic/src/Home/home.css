@@ -6,7 +6,7 @@
 p{
 font-weight: 300;
 margin-bottom: 1rem;
-background-color: #7439db;
+background-color: #05BFDB;
 border-radius: 10px;
 padding: 0.5rem;
 }
@@ -14,7 +14,7 @@ padding: 0.5rem;
  display: flex;
  flex-direction: column;
  justify-content: center;
- align-items: flex-end;
+ align-items: center;
 }
 .home-container .details{
  margin-top: 2rem;
@@ -29,6 +29,11 @@ padding: 0.5rem;
 label {
     text-align: left;
     padding: 0.2rem 0;
+    font-weight: 900;
+    margin-top: 0.1rem;
+}
+.label{
+    margin-top: 0.3rem;
 }
 select{
     margin: 0.3rem 0;
@@ -43,13 +48,16 @@ option{
 }
 .home-btn{
     border: none;
-    background-color: #7439db;
+    background-color: #05BFDB;
     padding: 0.5rem;
     border-radius: 10px;
     cursor: pointer; 
     color: white;
     margin-top: 2rem;
     
+}
+.available{
+    font-weight: 900;
 }
 /*.details{
  display: flex;
