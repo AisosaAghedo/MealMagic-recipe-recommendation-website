@@ -41,4 +41,4 @@ class User(BaseModel, Base, UserMixin):
     def confirm_pwd(self, pwd):
         """checks if password is correct"""
         user_bytes = pwd.encode('utf-8')
-        return bcrypt.checkpw(user_bytes, self.password)
+        return bcrypt.checkpw(user_bytes, self.password.encode('utf-8'))

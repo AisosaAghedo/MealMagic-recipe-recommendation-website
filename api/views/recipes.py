@@ -6,7 +6,7 @@ from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
 from helpers import cache
 import json
-#from recommender import recommend_recipes
+from engine_src.recommender import recommend_recipes
 
 @app_views.route("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
 def saved_recipes(user_id):
@@ -74,8 +74,7 @@ def find_recipe():
     return jsonify(recipe)
 
 
-'''
-@app_views.route('/recipes/ingredients', methods=['GET'], strict_slashes=False)
+@app_views.route('/recipes/ingredients', methods=['POST'], strict_slashes=False)
 def get_recipe():
     """
     GET: gets a suggested recipe using entered ingredients
@@ -89,9 +88,8 @@ def get_recipe():
     if type(req['ingredients']) is not str:
         abort(400, description="should be a string of ingredients")
 
-    recipe_suggestions = {'suggested_recipe': recommended_recipes(req['ingredients'])}
+    recipe_suggestions = {'suggested_recipe': recommend_recipes(req['ingredients'])}
     return jsonify(recipe_suggestions)
-'''
 
 
 @app_views.route('/recipe_search/<user_id>',
