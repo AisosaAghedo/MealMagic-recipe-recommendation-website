@@ -19,7 +19,7 @@ export default function HomeDesign() {
           <option value="italy">Italian Cuisine</option>
         </select>
         <label htmlFor="Ingrediets" className="label">
-          plese enter list of ingredients available
+          please enter list of ingredients available
         </label>
         <input type="text" placeholder="Ingredients" />
         <button type="submit" className="home-btn">
