@@ -25,9 +25,13 @@ def login():
     password = request.json.get("password", None)
     user = storage.get(User, email=email)
 
+    print(user)
 
     if user is None or user.confirm_pwd(password) is False:
         return jsonify({"msg": "Please check your login details and try again"}), 401
+
+    if user.confirmed is False:
+         return jsonify({"msg": "Account has not been verified"}), 401
 
     access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)

@@ -6,12 +6,11 @@ from models.base_model import BaseModel, Base
 import sqlalchemy
 from sqlalchemy import Column, String, Boolean
 from sqlalchemy.orm import relationship
-from flask_login import UserMixin
 
 
 location = "default.jpg"
 
-class User(BaseModel, Base, UserMixin):
+class User(BaseModel, Base):
     """Representation of a user """
     __tablename__ = 'users'
 
