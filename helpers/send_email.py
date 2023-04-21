@@ -8,12 +8,16 @@ from smtplib import SMTPResponseException
 email_sender = os.getenv('EMAIL_SENDER')
 email_password = os.getenv('EMAIL_PWD')
 
-def send_email(email, url_str):
-    subject = 'Confirm your email account'
+def send_email(subject, email, url_str):
+
+    if subject == 'Confirm your email account':
+        instruction = 'Click on link to verify email on meal magic'
+    else:
+        instruction = 'New password'
     body = """
-    click on link to verify email on meal magic
     {}
-    """.format(url_str)
+    {}
+    """.format(instruction, url_str)
     email_receiver = email
     em = EmailMessage()
 
