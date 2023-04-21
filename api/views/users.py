@@ -73,8 +73,8 @@ def get_and_post_users():
             abort(400, description="Not a json")
         if req.get('email') is None:
             abort(400, description="Missing email")
-        if storage.get(User, email=req['email'])
-                abort(400, description="Email is in use")
+        if storage.get(User, email=req['email']):
+            abort(400, description="Email is in use")
         if req.get("password") is None:
             abort(400, description="Missing password")
         if req.get('name') is None:
