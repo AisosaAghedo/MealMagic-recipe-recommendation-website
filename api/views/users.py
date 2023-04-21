@@ -4,8 +4,22 @@ from . import User
 from . import storage
 from flask import jsonify, request, abort
 from . import app_views
+from helpers.send_email import send_email
 
+HOST = 'http://127.0.0.1:5000/'
 
+@app_views.route('/users/validate/<user_id>')
+def validate(user_id):
+    """
+    validates user account
+    """
+    user = storage.get(User, id=user_id)
+    print(user)
+    if user is None:
+        abort(404)
+    user.confirmed = True
+    user.save()
+    return jsonify({'msg': "User confirmed"})
 
 @app_views.route("/users/<user_id>", methods=['GET'], strict_slashes=False)
 def get_user(user_id):
@@ -34,7 +48,7 @@ def get_and_post_users():
         return jsonify(users)
 
     else:
-        #url_string = '/users/validate/'
+        url_string = HOST + 'api/meal_magic/users/validate/'
         req = request.get_json()
 
         if req is None:
@@ -49,7 +63,7 @@ def get_and_post_users():
             abort(400, description="Missing name")
         user = User(**req)
         user.save()
-        #send_email(user.email, url_string + user.id)
+        send_email(user.email, url_string + user.id)
         return jsonify(user.to_dict()), 201
 
 

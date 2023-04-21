@@ -2,6 +2,13 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 import models
+from models import storage
+import datetime
+from .authentication import auth
+from flask import request
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import JWTManager, get_jwt
 
 app = Flask(__name__)
 
@@ -11,6 +18,24 @@ with app.app_context():
 
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+app.register_blueprint(auth)
+app.config["JWT_SECRET_KEY"] = "erfij3ouRH4OUR4OR3ORN"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
+jwt = JWTManager(app)
+
+@app.after_request
+def refresh_expiring_jwts(response):
+    try:
+        exp_timestamp = get_jwt()["exp"]
+        now = datetime.now(timezone.utc)
+        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        if target_timestamp > exp_timestamp:
+            access_token = create_access_token(identity=get_jwt_identity())
+            set_access_cookies(response, access_token)
+        return response
+    except (RuntimeError, KeyError):
+        # Case where there is not a valid JWT. Just return the original response
+        return response
 
 @app.errorhandler(404)
 def handle_404(e):
