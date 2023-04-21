@@ -25,7 +25,6 @@ def login():
     password = request.json.get("password", None)
     user = storage.get(User, email=email)
 
-    print(user)
 
     if user is None or user.confirm_pwd(password) is False:
         return jsonify({"msg": "Please check your login details and try again"}), 401

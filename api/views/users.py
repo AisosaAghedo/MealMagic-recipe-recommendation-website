@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """api to interact with the users table"""
 from . import User
+from helpers.random_string import string_gen
 from . import storage
 from flask import jsonify, request, abort
 from . import app_views
@@ -20,6 +21,23 @@ def validate(user_id):
     user.confirmed = True
     user.save()
     return jsonify({'msg': "User confirmed"})
+
+
+@app_views.route('/users/forgot_passwords/<email>')
+def change_password(email):
+    """
+    changes password of a user
+    """
+    user = storage.get(User, email=email)
+    new_password = string_gen(10)
+
+    if user is None:
+        abort(404)
+    user.secure_password(new_password)
+    user.save()
+    send_email('Password changed', user.email, new_password)
+    return jsonify({'msg': 'password changed'})
+
 
 @app_views.route("/users/<user_id>", methods=['GET'], strict_slashes=False)
 def get_user(user_id):
@@ -50,20 +68,22 @@ def get_and_post_users():
     else:
         url_string = HOST + 'api/meal_magic/users/validate/'
         req = request.get_json()
+        user = storage.get(User, email=req['email'])
 
         if req is None:
             abort(400, description="Not a json")
         if req.get('email') is None:
             abort(400, description="Missing email")
-        if storage.get(User, email=req['email']):
-            abort(400, description="Email is in use")
+        if user is not None:
+            if user.confirmed is True:
+                abort(400, description="Email is in use")
         if req.get("password") is None:
             abort(400, description="Missing password")
         if req.get('name') is None:
             abort(400, description="Missing name")
         user = User(**req)
         user.save()
-        send_email(user.email, url_string + user.id)
+        send_email('Confirm your email account', user.email, url_string + user.id)
         return jsonify(user.to_dict()), 201
 
 

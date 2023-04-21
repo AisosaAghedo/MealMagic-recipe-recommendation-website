@@ -17,7 +17,7 @@ with app.app_context():
 
 
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(auth)
 app.config["JWT_SECRET_KEY"] = "erfij3ouRH4OUR4OR3ORN"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
