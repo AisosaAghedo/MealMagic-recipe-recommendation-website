@@ -68,14 +68,12 @@ def get_and_post_users():
     else:
         url_string = HOST + 'api/meal_magic/users/validate/'
         req = request.get_json()
-        user = storage.get(User, email=req['email'])
 
         if req is None:
             abort(400, description="Not a json")
         if req.get('email') is None:
             abort(400, description="Missing email")
-        if user is not None:
-            if user.confirmed is True:
+        if storage.get(User, email=req['email'])
                 abort(400, description="Email is in use")
         if req.get("password") is None:
             abort(400, description="Missing password")
