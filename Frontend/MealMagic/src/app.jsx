@@ -8,13 +8,15 @@ import {
 import Home from "./Home/home";
 import "./index.css";
 import Layout from "./layout/layout";
+import Login from "./signin/login";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route>
         <Route path="/register" element={<Layout />} />
-        <Route path='/' element={<Home />} /> 
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
       </Route>
     </>
   )

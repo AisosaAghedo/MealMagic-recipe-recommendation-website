@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './signin.css'
 export const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -10,7 +11,9 @@ export const Signin = (props) => {
   return (
     <div className="auth-form-container">
       <form className="signin-from" onsubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="label-class">
+          Email
+        </label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -19,7 +22,9 @@ export const Signin = (props) => {
           id="email"
           name="email"
         />
-        <label htmlFor="password">Password</label>
+        <label className="label-class" htmlFor="password">
+          Password
+        </label>
         <input
           value={pass}
           onChange={(e) => setPass(e.target.value)}
@@ -28,7 +33,9 @@ export const Signin = (props) => {
           id="password"
           name="password"
         />
-        <button className="submit" type="submit">Login</button>
+        <button className="submit" type="submit">
+          Login
+        </button>
       </form>
       <button
         className="link-btn"
