@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Route,
   createBrowserRouter,
@@ -10,13 +10,17 @@ import "./index.css";
 import Layout from "./layout/layout";
 import Login from "./signin/login";
 
+const toggleForm = (formName) => {
+  setCurrentForm(formName)
+}
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route>
         <Route path="/register" element={<Layout />} />
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login onFormSwitch={toggleForm}/>} />
       </Route>
     </>
   )

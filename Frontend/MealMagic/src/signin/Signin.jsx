@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import './signin.css'
+import { Outlet, Link } from "react-router-dom";
 export const Signin = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
   };
   return (
     <div className="auth-form-container">
-      <form className="signin-from" onsubmit={handleSubmit}>
+      <form className="signin-from" onSubmit={handleSubmit}>
         <label htmlFor="email" className="label-class">
           Email
         </label>
@@ -37,12 +38,12 @@ export const Signin = (props) => {
           Login
         </button>
       </form>
-      <button
-        className="link-btn"
-        onClick={() => props.onFormSwitch("Register")}
-      >
-        Don't have an account? Register here.
-      </button>
+      <Link to="/register">
+        <button className="link-btn">
+          Don't have an account? Register here.
+        </button>
+      </Link>
+      <Outlet />
     </div>
   );
 };
