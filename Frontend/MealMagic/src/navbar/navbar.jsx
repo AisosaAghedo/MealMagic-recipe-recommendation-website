@@ -26,6 +26,9 @@ const Navbar = () => {
           <Link to="/" className="nav">
             Home
           </Link>
+          <Link to="/Recipe" className="nav">
+            Recipe
+          </Link>
           <Link to="/register" className="nav">
             Sign up
           </Link>

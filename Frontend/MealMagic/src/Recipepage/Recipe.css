@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+*{
+    font-family: 'Oxygen', sans-serif;
+}
+.main{
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 35px;
+}
+.searhbar{
+    margin: 1rem;
+    width: 400px;
+    height: 50px;
+    border: none;
+    border-radius: 5rem;
+    padding: 0.3rem 8rem;
+}
+.card{
+    width: 180px;
+    border-radius: 1rem;
+    background-color: hsl(180, 1%, 18%);
+    padding: 5px;
+}
+.poto{
+    width: 100px;
+    border-radius: 1rem 1rem 0 0; 
+}
+
+.card h3{
+    color: azure;
+    font-size: 18px;
+}
+.container1{
+    margin-top: px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.size{
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+}
+h3 {
+    margin-top: 25px;
+    color: red;
+}
+span{
+    margin-top:50px;
+    color: black;
+    padding: auto;
+}
+.photo{
+    width: 400px;
+    height: 400px;
+    background-color: rgb(218, 237, 236);  
+    margin: 30px;
+    text-align: center;
+}
+.recipe{
+    background-color: rgb(218, 237, 236);
+    margin: 30px;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+}
