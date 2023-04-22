@@ -52,7 +52,8 @@ def get_user(user_id):
 
 
 @app_views.route("/users", methods=['GET', 'POST'],
-                 strict_slashes=False)
+strict_slashes=False)
+@cross_origin()
 def get_and_post_users():
     """ 
     GET: returns all users.

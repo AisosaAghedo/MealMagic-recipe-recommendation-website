@@ -2,6 +2,7 @@
   "name": "mealmagic",
   "private": true,
   "version": "0.0.0",
+  "proxy": "",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +11,10 @@
   },
   "dependencies": {
     "react": "^18.2.0",
+    "react-alert": "^7.0.3",
+    "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
