@@ -48,6 +48,6 @@ CREATE TABLE link (
     FOREIGN KEY (recipes_id) REFERENCES recipes (id)
 );
 
---CREATE USER 'team'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'team'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON recipe_recommendation.* TO 'team'@'localhost';
 FLUSH PRIVILEGES;
