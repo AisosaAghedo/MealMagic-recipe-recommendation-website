@@ -10,7 +10,9 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL UNIQUE,
     confirmed BOOLEAN DEFAULT FALSE,
     password VARCHAR(60) NOT NULL,
-    profile_picture VARCHAR(120)
+    profile_picture VARCHAR(120),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE recipes (
@@ -19,7 +21,9 @@ CREATE TABLE recipes (
     img_url TEXT,
     ingredients TEXT,
     directions TEXT,
-    recipe_url VARCHAR(255)
+    recipe_url VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE ratings (
@@ -28,7 +32,9 @@ CREATE TABLE ratings (
     user_id VARCHAR(60) NOT NULL,
     recipe_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes (id)
+    FOREIGN KEY (recipe_id) REFERENCES recipes (id),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE reviews (
@@ -37,7 +43,9 @@ CREATE TABLE reviews (
     user_id VARCHAR(60) NOT NULL,
     recipe_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes (id)
+    FOREIGN KEY (recipe_id) REFERENCES recipes (id),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE link (
@@ -45,8 +53,11 @@ CREATE TABLE link (
     recipes_id INT,
     PRIMARY KEY (users_id, recipes_id),
     FOREIGN KEY (users_id) REFERENCES users (id),
-    FOREIGN KEY (recipes_id) REFERENCES recipes (id)
+    FOREIGN KEY (recipes_id) REFERENCES recipes (id),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 CREATE USER 'team'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON recipe_recommendation.* TO 'team'@'localhost';
