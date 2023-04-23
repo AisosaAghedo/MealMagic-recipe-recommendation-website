@@ -1,27 +1,57 @@
 import React from "react";
+import { useParams } from 'react-router-dom'
 
 const RecipeCard = () => {
-    
-    return (
-        <div className="container1">
-            <div className="recipe">
-                <h3>Instruction</h3>
-                <span >Put the flour, eggs,milk, I tbsp oil and a pinch of salt into a bowl or
-                    large jug, then whisk to a smooth batter.Set aside for 30mint to rest if you have time
-                     or start cooking streight away. Set a medium frying pan or cripe pan over a medium 
-                     heat and carefully wipe it with some oiled kitchen papper. When hot, cook your 
-                     pancakes for 1min on each side until golden, keeping them warm in a low oven as you 
-                     go. Serve with lemon wedges and sugar, or your favourite filling. Once cold, you can
-                     layer the pancake between baking parchement, then wrap in cling film and freeze for up 
-                     to 2 months.
-                </span>
-            </div>
-            <div className="photo">
-                <img className="size" src="" alt="Recipe images" />
-            </div>
-            
-        </div> 
-       
-    )
+  function getRecipes() {
+    const { ingredients } = useParams();
+    return (ingredients)
+    console.log(ingredients);
+  }
+  getRecipes();
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({'ingredients': getRecipes()}),
+  };
+
+  const fetchOptions = {
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+    },
+  };
+
+  fetch(
+    "http://localhost:5000/api/meal_magic/recipes/ingredients",
+    requestOptions
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      for (let value of data.suggested_recipe) {
+        console.log(value[0]);
+        fetchOptions.body = JSON.stringify({name: value[0]})
+        fetch("http://localhost:5000/api/meal_magic/get_recipes",fetchOptions)
+        .then(res => res.json())
+        .then(data => console.log(data))
+      }
+    })
+
+    .catch((err) => console.log(err));
+
+  // reset()
+
+  return (
+    <div className="container1">
+      <div className="recipe">
+        <h3>Instruction</h3>
+      </div>
+      <div className="photo">
+        <img className="size" src="" alt="Recipe images" />
+      </div>
+    </div>
+  );
 }
 export default RecipeCard;

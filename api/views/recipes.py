@@ -6,7 +6,7 @@ from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
 from helpers import cache
 import json
-#from engine_src.recommender import recommend_recipes
+from engine_src.recommender import recommend_recipes
 
 @app_views.route("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
 def saved_recipes(user_id):
@@ -44,7 +44,8 @@ def saved_recipes(user_id):
         return jsonify(recipe), 201
 
 
-@app_views.route('/get_recipes', strict_slashes=False)
+@app_views.route('/get_recipes', methods=['POST'],
+strict_slashes=False)
 def find_recipe():
     """
     finds recipe from db using passed name in json

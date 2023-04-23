@@ -3,11 +3,11 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import models
 from models import storage
-import datetime
+from datetime import datetime, timezone
 from .authentication import auth
 from flask import request
 
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, set_access_cookies
 from flask_jwt_extended import JWTManager, get_jwt
 
 app = Flask(__name__)
