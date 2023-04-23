@@ -39,8 +39,11 @@ export  default function SignupDesign(props) {
     <>
       <div className="container">
         <form method="POST">
-          <label htmlFor="">Username</label>
+          <label className="signup_label" htmlFor="">
+            Username
+          </label>
           <input
+            className="signup_input"
             type="text"
             placeholder=" Your Username"
             {...register("name", { required: true, maxLength: 25 })}
@@ -55,8 +58,11 @@ export  default function SignupDesign(props) {
               <small>Maximum characters should be 25</small>
             </p>
           )}
-          <label htmlFor="">Email</label>
+          <label className="signup_label" htmlFor="">
+            Email
+          </label>
           <input
+            className="signup_input"
             type="email"
             placeholder="Email"
             {...register("email", { required: true, maxLength: 75 })}
@@ -71,8 +77,11 @@ export  default function SignupDesign(props) {
               <small>Maximum characters should be 75</small>
             </p>
           )}
-          <label htmlFor="">Password</label>
+          <label className="signup_label" htmlFor="">
+            Password
+          </label>
           <input
+            className="signup_input"
             type="password"
             placeholder="Password"
             {...register("password", { required: true, minLength: 8 })}
@@ -87,8 +96,11 @@ export  default function SignupDesign(props) {
               <small>Minimum characters should be 8</small>
             </p>
           )}
-          <label htmlFor="">Confirm Password</label>
+          <label className="signup_label" htmlFor="">
+            Confirm Password
+          </label>
           <input
+            className="signup_input"
             type="password"
             placeholder="Confirm Password"
             {...register("confirmPassword", { required: true, minLength: 8 })}

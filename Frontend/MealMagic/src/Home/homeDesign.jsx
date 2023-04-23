@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "./home.css";
+import { useForm } from "react-hook-form";
 
 
 export default function HomeDesign() {
+const {register, watch, handleSubmit,reset, formState:{errors}} =useForm('')
+  const s = (data)=>{
 
+  }
   /*const [ingredients, setIngredients] = useState("");
 
   const handleSubmit = async (e) => {
@@ -30,37 +34,24 @@ export default function HomeDesign() {
 */
   return (
     <div className="home-container">
-      <div className="details">
-        <h2>Please enter your prefered options</h2>
-        <label htmlFor="diet">Dietary restrictions</label>
-        <select name="Dietary restrictions" id="diet">
-          <option value="Vegan">Vegan</option>
-          <option value="Non vegan">Non vegan</option>
-        </select>
-        <label htmlFor="cuisine">Cuisine</label>
-        <select name="Cuisine" id="cuisine">
-          <option value="Nigeria"> Nigerian Cuisine</option>
-          <option value="Ethiopia">Ethiopian Cuisine</option>
-          <option value="french">French Cuisine</option>
-          <option value="china">Chinese Cuisine</option>
-          <option value="italy">Italian Cuisine</option>
-        </select>
+      
+      <div className="ingredients">
         <label htmlFor="Ingrediets" className="label">
-          please enter list of ingredients available
+          <h2>please enter list of ingredients available</h2>
         </label>
         <input
-          /*value={ingredient}
-          onChange={(e) => setIngredients(e.target.value)}*/
+          className="home_input
+        "
           type="text"
           placeholder="Ingredients"
         />
-        <button type="submit" className="home-btn" onClick>
+        <div className="available">
+          pepper, salt and other common ingredients are assummed to be
+          available.
+        </div>
+        <button type="submit" className="home-btn" onClick={Hallo}>
           Get Recommendation
         </button>
-      </div>
-
-      <div className="available">
-        pepper, salt and other common ingredients are assummed to be available.
       </div>
     </div>
   );

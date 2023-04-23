@@ -1,40 +1,91 @@
 import React, { useState } from "react";
 import './signin.css'
 import { Outlet, Link } from "react-router-dom";
-export const Signin = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+import { useForm } from "react-hook-form";
+import {useNavigate} from 'react-router-dom'
+import { createAuthProvider } from "react-token-auth";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email);
-  };
+export const {useAuth, authFetch, login, logout} = createAuthProvider({
+  accessTokenKey: "access_token",
+  onUpdateToken: (token) =>
+    fetch("http://127.0.0.1:5000/auth/refresh", {
+      method: "POST",
+      body: token.refresh_token,
+    }).then((r) => r.json()),
+});
+
+
+export const Signin = () => {
+  const {register,handleSubmit,reset,formState: { errors }} = useForm("");
+
+  const navigate =useNavigate()
+
+  const submitLogin=(data)=>{
+    console.log(data)
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data)
+    }
+
+    fetch("http://127.0.0.1:5000/auth/login", requestOptions)
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data.access_token)
+      login(data.access_token)
+      navigate('/')
+    })
+    // reset()
+  }
+
   return (
     <div className="auth-form-container">
-      <form className="signin-from" onSubmit={handleSubmit}>
+      <form className="signin-from">
         <label htmlFor="email" className="label-class">
           Email
         </label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+        <input className="input"
           type="email"
           placeholder="youremail@gmail.com"
-          id="email"
-          name="email"
+          {...register("email", { required: true, maxLength: 75 })}
         />
+        {errors.email && (
+          <p style={{ color: "red" }}>
+            <small>Email is required</small>
+          </p>
+        )}
+        {errors.email?.type === "maxLength" && (
+          <p style={{ color: "red" }}>
+            <small>Maximum characters should be 75</small>
+          </p>
+        )}
         <label className="label-class" htmlFor="password">
           Password
         </label>
         <input
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
+        className="input"
           type="password"
           placeholder="*******"
-          id="password"
-          name="password"
+          {...register("password", { required: true, minLength: 8 })}
         />
-        <button className="submit" type="submit">
+        {errors.password && (
+          <p style={{ color: "red" }}>
+            <small>Password is required</small>
+          </p>
+        )}
+        {errors.password?.type === "minLength" && (
+          <p style={{ color: "red" }}>
+            <small>Minimum characters should be 8</small>
+          </p>
+        )}
+        <button
+          className="submit"
+          type="submit"
+          onClick={handleSubmit(submitLogin)}
+        >
           Login
         </button>
       </form>
