@@ -29,7 +29,7 @@ export  default function SignupDesign(props) {
       .then(console.log(`User ${data.name} created succcesfully`))
       .catch((err) => console.log(err));
     
-    reset()
+    // reset()
   }
   else{
     alert("Password and confirm password don't match")

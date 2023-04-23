@@ -4,6 +4,7 @@ import Navbar from "../navbar/navbar";
 import RecipeCard from "./RecipeCard";
 import SearchBar from "./SearchBar";
 import "./Recipe.css";
+
 const Home = () => {
   return (
     <div>

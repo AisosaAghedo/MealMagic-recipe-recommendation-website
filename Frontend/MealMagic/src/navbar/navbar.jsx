@@ -11,21 +11,22 @@ const LoggedIn = () => {
       <Link to="/" className="nav">
         Home
       </Link>
-      <Link to="/Recipe" className="nav">
+      <Link to="/Recipe/:ingredients" className="nav">
         Recipe
       </Link>
       <Link to="about" className="nav">
         About
       </Link>
-      <a
-        className="nav"
-        href="#"
-        onClick={() => {
-          logout();
-        }}
-      >
-        Log Out
-      </a>
+
+        <Link className="nav"
+          to="/login"
+          onClick={() => {
+            logout();
+          }}
+        >
+          Log Out
+        </Link>
+
       <Outlet />
     </>
   );
