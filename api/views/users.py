@@ -6,7 +6,7 @@ from . import storage
 from flask import jsonify, request, abort
 from . import app_views
 from helpers.send_email import send_email
-
+from flask_cors import cross_origin
 HOST = 'http://127.0.0.1:5000/'
 
 @app_views.route('/users/validate/<user_id>')
