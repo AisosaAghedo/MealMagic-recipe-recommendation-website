@@ -3,13 +3,52 @@ import { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import './navbar.css'
 import logoImage from "../assets/Logo.jpg";
+import {useAuth, logout} from '../signin/Signin'
 
+const LoggedIn = () => {
+  return (
+    <>
+      <Link to="/" className="nav">
+        Home
+      </Link>
+      <Link to="/Recipe" className="nav">
+        Recipe
+      </Link>
+      <Link to="about" className="nav">
+        About
+      </Link>
+      <a
+        className="nav"
+        href="#"
+        onClick={() => {
+          logout();
+        }}
+      >
+        Log Out
+      </a>
+      <Outlet />
+    </>
+  );
+}
+
+const LoggedOut = () => {
+    return (
+      <>
+        <Link to="/register" className="nav">
+          Sign up
+        </Link>
+        <Link to="/login" className="nav">
+          Login
+        </Link>
+        <Link to="about" className="nav">
+          About
+        </Link>
+        <Outlet />
+      </>
+    );}
 const Navbar = () => {
-  const [current, setCurrent] = useState("h");
-  const onClick = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
-  };
+
+  const [logged]=useAuth();
   return (
     <>
       <div className="navclass">
@@ -23,22 +62,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="nav-holder">
-          <Link to="/" className="nav">
-            Home
-          </Link>
-          <Link to="/Recipe" className="nav">
-            Recipe
-          </Link>
-          <Link to="/register" className="nav">
-            Sign up
-          </Link>
-          <Link to="/login" className="nav">
-            Login
-          </Link>
-          <Link to="about" className="nav">
-            About
-          </Link>
-          <Outlet />
+          {logged ? <LoggedIn /> : <LoggedOut />}
         </div>
       </div>
     </>

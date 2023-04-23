@@ -12,17 +12,13 @@ import Login from "./signin/login";
 import Recipe from "./Recipepage/Recipe";
 
 
-const toggleForm = (formName) => {
-  setCurrentForm(formName)
-}
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route>
         <Route path="/register" element={<Layout />} />
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login onFormSwitch={toggleForm}/>} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/Recipe" element={<Recipe />} />
       </Route>
     </>
