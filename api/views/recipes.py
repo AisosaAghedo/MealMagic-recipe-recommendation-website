@@ -68,7 +68,8 @@ def find_recipe():
         recipe = storage.get(Recipe, None, req['name'])
         if recipe is not None:
             recipe = recipe.to_dict()
-            del recipe['users']
+            if recipe.get('users'):
+                del recipe['users']
             cache.set_value(req['name'], json.dumps(recipe))
     if recipe is None:
         abort(404)
