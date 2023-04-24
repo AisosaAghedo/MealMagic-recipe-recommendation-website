@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import "./Signup.css";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form';
+import toast, {Toaster} from 'react-hot-toast';
 
 export  default function SignupDesign(props) {
+
+  const notify = () => toast("Password and confirm password don't match")
     
   const {register, watch, handleSubmit,reset, formState:{errors}} =useForm('')
   const submitRegister = (data)=>{
@@ -32,11 +35,13 @@ export  default function SignupDesign(props) {
     // reset()
   }
   else{
-    alert("Password and confirm password don't match")
+
+    notify()
+    
   }
 }
   return (
-    <>
+    <div className="body">
       <div className="container">
         <form method="POST">
           <label className="signup_label" htmlFor="">
@@ -122,12 +127,13 @@ export  default function SignupDesign(props) {
           >
             Sign Up
           </button>
+          <Toaster/>
         </form>
         <Link to="/login">
           <button className="link-btn">Already signed up? Login here.</button>
         </Link>
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }

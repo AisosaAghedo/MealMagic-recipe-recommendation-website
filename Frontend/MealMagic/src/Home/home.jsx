@@ -5,8 +5,10 @@ import './home.css'
 const Home = () => {
   return (
     <>
-    <Navbar />
-      <HomeDesign />
+      <Navbar />
+      <div className="layout">
+        <HomeDesign />
+      </div>
     </>
   );
 };
