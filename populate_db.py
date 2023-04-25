@@ -1,7 +1,7 @@
 import MySQLdb as mysqldb
 import pandas as pd
 
-recipe_df = pd.read_csv('./input/recipes.csv')
+recipe_df = pd.read_csv('./input/final_recipes.csv')
 db_name = "recipe_recommendation"
 host = "localhost"
 user = "team"

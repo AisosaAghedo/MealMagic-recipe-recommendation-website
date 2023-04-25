@@ -101,7 +101,6 @@ def search_recipe(user_id):
     """
     req = request.get_json()
     user = storage.get(User, user_id)
-
     if user is None:
         abort(400, description="Not a user")
 
