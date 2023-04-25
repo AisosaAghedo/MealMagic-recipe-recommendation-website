@@ -24,9 +24,9 @@ def recommend_recipes(ingredients):
     # Define the file paths
     parent_dir = os.path.abspath(
         os.path.join(os.path.dirname(__file__), os.pardir))
-    parsed_recipe_file = os.path.join(parent_dir, 'input', 'parsed_recipe.csv')
-    model_file = os.path.join(parent_dir, 'input', 'tdidf_model')
-    encoding_file = os.path.join(parent_dir, 'input', 'tdidf_encoding')
+    parsed_recipe_file = os.path.join(parent_dir, 'input', 'final_parsed_recipe.csv')
+    model_file = os.path.join(parent_dir, 'input', 'final_tdidf_model')
+    encoding_file = os.path.join(parent_dir, 'input', 'final_tdidf_encoding')
 
     # Load the TfidfVectorizer model and encoding
     with open(model_file, 'rb') as file:

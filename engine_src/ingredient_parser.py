@@ -11,8 +11,8 @@ from nltk.stem import WordNetLemmatizer
 # Define the file paths
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),
                                           os.pardir))
-RECIPE_LINKS = os.path.join(parent_dir, 'input', 'recipes.csv')
-PARSED_RECIPE = os.path.join(parent_dir, 'input', 'parsed_recipe.csv')
+RECIPE_LINKS = os.path.join(parent_dir, 'input', 'final_recipes.csv') 
+PARSED_RECIPE = os.path.join(parent_dir, 'input', 'final_parsed_recipe.csv')
 
 
 def ingredient_parser(ingreds: str) -> str:
