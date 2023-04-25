@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 import models
 from models import storage
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from .authentication import auth
 from flask import request
 
@@ -20,7 +20,7 @@ app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(auth)
 app.config["JWT_SECRET_KEY"] = "erfij3ouRH4OUR4OR3ORN"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = datetime.timedelta(hours=1)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
 
 @app.after_request
