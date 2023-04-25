@@ -1,4 +1,4 @@
-.auth-form-container,.signin-from {
+#auth-form-container,.signin-from {
     display: flex;
     flex-direction: column;
     justify-content: center;

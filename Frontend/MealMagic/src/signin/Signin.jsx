@@ -42,7 +42,7 @@ export const Signin = () => {
   }
 
   return (
-    <div className="auth-form-container">
+    <div className="body" id="auth-form-container">
       <form className="signin-from">
         <label htmlFor="email" className="label-class">
           Email

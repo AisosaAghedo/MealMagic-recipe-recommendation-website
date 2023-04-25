@@ -1,63 +1,63 @@
 .main{
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 35px;
+    background: none;
+    height: 100vh;
+    width: 100wh;
 }
-.searhbar{
-    margin: 1rem;
-    width: 400px;
-    height: 50px;
-    border: none;
-    border-radius: 5rem;
-    padding: 0.3rem 8rem;
-}
-.card{
-    width: 180px;
-    border-radius: 1rem;
-    background-color: hsl(180, 1%, 18%);
-    padding: 5px;
-}
-.poto{
-    width: 100px;
-    border-radius: 1rem 1rem 0 0; 
+.recipe_container{
+    display: flex;
+    justify-content: space-around; 
+    margin-bottom: 5em;
+    background-color: #00000080;
+    border-radius: 0.6em;
+    /* width: 90vw; */
+    margin-left: 2em;
+
+
 }
 
-.card h3{
-    color: azure;
-    font-size: 18px;
-}
-.container1{
-    margin-top: px;
+.recipe_contain{
+    width: 20em;
+    height: 20em;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
-.size{
-    width: 100px;
-    height: 100px;
-    margin-top: 30px;
+.recipe_instructions{
+   width: 30em; 
+    /*height: 50rem;*/
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    
 }
-h3 {
-    margin-top: 25px;
-    color: red;
-}
-span{
-    margin-top:50px;
-    color: black;
-    padding: auto;
-}
-.photo{
-    width: 400px;
-    height: 400px;
-    background-color: rgb(218, 237, 236);  
-    margin: 30px;
+.h1, .recipe_name{
     text-align: center;
 }
-.recipe{
-    background-color: rgb(218, 237, 236);
-    margin: 30px;
-    width: 400px;
-    height: 400px;
-    text-align: center;
+.image{
+    /*height: 16em;
+    width: 20em;*/
+    height: 100%;
+    width: 100%;
+    
+    
+}
+.recipe_ingredients{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+details summary {
+  padding: 0.25em;
+  width: 12em;
+  background-color: #eeeeee;
+  border: none;
+  box-shadow: 0.06em 0.06em 0.12em #bbbbbb;
+  cursor: pointer;
+  font-weight: bold
+}
+details p {
+  background-color: #eeeeee;
+  padding:1em;
+  margin: 0;
+  box-shadow: 0.06em 0.06em 0.12em #bbbbbb;
 }

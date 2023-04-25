@@ -1,54 +1,8 @@
-/* *{ 
+*{ 
  padding: 0;
  margin: 0;
  box-sizing: border-box;
 }
-/*
-.home-container{
- display: flex;
- flex-direction: row;
- justify-content: flex-end;
- align-items: flex-end;
- margin-top: 1rem;
- padding-top: 2rem;
- border-radius: 10px;
- margin: 0.5rem;
- margin-top: 0.02rem;
-}
-
-
-.available{
-    font-weight: 900;
-}
-/*.details{
- display: flex;
- flex-direction: column;
-}
-.container form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 2rem;
-    border-radius: 10px;
-    margin: 0.5rem;
-    margin-top: 0.02rem;
-}
-label {
-    text-align: left;
-    padding: 0.2rem 0;
-}
-option{
-    margin: 0.3rem 0;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 10px;
-    color: #7439db;
-}
-
-
-.welcome{
-    background-color: aquamarine;
-}*/
 .home-container{
     display: flex;
     justify-content: center;
