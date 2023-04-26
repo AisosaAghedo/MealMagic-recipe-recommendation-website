@@ -7,6 +7,7 @@ from flask import abort, jsonify, request
 from helpers import cache
 import json
 from engine_src.recommender import recommend_recipes
+from ast import literal_eval
 
 @app_views.route("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
 def saved_recipes(user_id):
@@ -73,6 +74,8 @@ def find_recipe():
             cache.set_value(req['name'], json.dumps(recipe))
     if recipe is None:
         abort(404)
+    recipe['directions'] = literal_eval(recipe['directions'])
+    recipe['ingredients'] = literal_eval(recipe['ingredients'])
     return jsonify(recipe)
 
 
