@@ -3,7 +3,7 @@
 from . import User
 from helpers.random_string import string_gen
 from . import storage
-from flask import jsonify, request, abort
+from flask import jsonify, request, abort, redirect
 from . import app_views
 from helpers.send_email import send_email
 from flask_cors import cross_origin
@@ -15,12 +15,11 @@ def validate(user_id):
     validates user account
     """
     user = storage.get(User, id=user_id)
-    print(user)
     if user is None:
         abort(404)
     user.confirmed = True
     user.save()
-    return jsonify({'msg': "User confirmed"})
+    return redirect('http://localhost:5173/login')
 
 
 @app_views.route('/users/forgot_passwords/<email>')
@@ -53,7 +52,6 @@ def get_user(user_id):
 
 @app_views.route("/users", methods=['GET', 'POST'],
 strict_slashes=False)
-@cross_origin()
 def get_and_post_users():
     """ 
     GET: returns all users.
