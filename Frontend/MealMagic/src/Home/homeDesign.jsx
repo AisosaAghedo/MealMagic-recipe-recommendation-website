@@ -59,23 +59,25 @@ const LoggedOut_Home = ()=>{
     <div className="loggedout">
       <div class="content">
         <div class="text">
-          <h1>
-            MealMagic
-          </h1>
-          <p>
+          <h2>
+            MealMagic Recipe <strong> Recommendation</strong>
+          </h2>
+          
+          <p className="para">
             Pepsi is a carbonated soft drink manufactured by PepsiCo. <br />
             Originally created and developed in 1893 by Caleb Bradham <br />
             and introduced as Brad's Drink, it was renamed as Pepsi-Cola in
             1898, and then shortened to Pepsi in 1961.
           </p>
+          <div className="button">
+        <button class="btn3">Sign Up Here</button>
+      </div>
         </div>
         <div class="pepsi">
           <img src={ingredientsImg} alt="image" />
         </div>
       </div>
-      <div className="button">
-        <button class="btn3">Buy Now</button>
-      </div>
+      
     </div>
   );
 }

@@ -3,6 +3,9 @@
  margin: 0;
  box-sizing: border-box;
 }
+body{
+ background-color: teal;
+}
 .home-container{
     display: flex;
     justify-content: center;
@@ -46,24 +49,51 @@ padding: 0.5rem;
 }
 .loggedout{
     
- background-image: url("../assets/home_img.webp"); 
+ background-image: url("../assets/teal.png"); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     /*width: 100vw;*/
-    border: red 2px solid;
+    /*border: red 2px solid;*/
 }
 .content{
-    border: 2px red solid;
+    /*border: 2px solid  white;*/
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 1em;
+    margin-top: 20px;
+    margin-left: 9px;
+    margin-right: 9px;
+    padding: 50px;
+    border-radius: 100px;
 }
 .pepsi{
-    border: 2px red solid;
+    /*border: 2px red solid;*/
+    margin-left: 9rem;
+}
+img{
+    border-radius: 50px ;
+    
 }
 .text{
     width: 15em;
+}
+.btn3{
+    margin-top: 25px;
+    margin: 5px, 5px;
+    align-items: center;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 50px;
+    color: teal;
+    padding: 1em;
+    font-size: 16px;
+
+}
+strong{
+    color: white;
+}
+.para{
+    font-size: 17px;
 }
