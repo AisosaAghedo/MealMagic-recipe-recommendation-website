@@ -38,13 +38,12 @@ const RecipeCard = () => {
       let i = 0;
       let list_of_recipes = []
       for (let value of data.suggested_recipe) {
-        // console.log(value[0]);
         fetchOptions.body = JSON.stringify({ name: value[0] });
         fetch("http://localhost:5000/api/meal_magic/get_recipes", fetchOptions)
           .then((res) => res.json())
           .then((data) => {
             i++;
-              list_of_recipes.push(data);
+            list_of_recipes.push(data);
             // console.log(list_of_recipes)
             if (i === 10){
               console.log(list_of_recipes);
