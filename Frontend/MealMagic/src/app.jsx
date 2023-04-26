@@ -10,6 +10,7 @@ import "./index.css";
 import Layout from "./layout/layout";
 import Login from "./signin/login";
 import Recipe from "./Recipepage/Recipe";
+import About from "./AboutPage/About";
 
 
 const router = createBrowserRouter(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/Recipe/:ingredients" element={<Recipe />} />
+        <Route path="/About" element={<About/>} />
       </Route>
     </>
   )
