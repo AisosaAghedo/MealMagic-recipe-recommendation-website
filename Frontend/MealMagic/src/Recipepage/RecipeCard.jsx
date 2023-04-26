@@ -67,7 +67,7 @@ const RecipeCard = () => {
           <div className="recipe_container">
             <div className="recipe_contain">
               <img className="image" src={recipe.img_url} />
-              <h3>Image of {recipe.name}</h3>
+              <h3 className="img_name">Image of {recipe.name}</h3>
               </div>
               <div className="recipe_instructions">
                 <div className="recipe_ingredients">

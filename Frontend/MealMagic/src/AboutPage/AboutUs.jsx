@@ -7,7 +7,7 @@ const AboutUs = () => {
   return (
     <>
       <div id="about" className="section">
-        <div className="container">
+        <div className="about_container">
           <header className="section-header">
             <h2 className="section-title">About Us</h2>
             <p className="section-tagline">Everything about us</p>
@@ -29,8 +29,12 @@ const AboutUs = () => {
                 </p>
                 <h3>Our culture</h3>
                 <p className="p">
-                We don't only care  about individual
-                  recipes, but about planning and organizing entire meals for you and your friends and family
+                  We don't only care about individual recipes, but about
+                  planning and organizing entire meals for you and your friends
+                  and family. With MealMagic, you can easily browse through a
+                  vast collection of recipes, Whether you're a seasoned chef or just starting
+                  out in the kitchen, MealMagic has everything you need to take
+                  your cooking skills to the next level
                 </p>
                 <h3>How we work</h3>
                 <p className="p">

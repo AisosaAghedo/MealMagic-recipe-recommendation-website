@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 .recipe_instructions{
    width: 30em; 
@@ -37,6 +37,8 @@
 .image{
     height: 16em;
     width: 20em;
+    margin-top: 1rem;
+    border-radius: 20px;
     
     
 }
@@ -58,4 +60,8 @@ details p {
   padding:1em;
   margin: 0;
   box-shadow: 0.06em 0.06em 0.12em #bbbbbb;
+}
+
+.img_name{
+    margin: 1rem;
 }

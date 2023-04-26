@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth, logout } from "../signin/Signin";
 import ingredientsImg from '../assets/ingredients_img.jpg'
+import { Outlet, Link } from "react-router-dom";
 
 const Loggedin_Home = ()=>{
   const navigate = useNavigate();
@@ -62,22 +63,27 @@ const LoggedOut_Home = ()=>{
           <h2>
             MealMagic Recipe <strong> Recommendation</strong>
           </h2>
-          
+
           <p className="para">
-            Pepsi is a carbonated soft drink manufactured by PepsiCo. <br />
-            Originally created and developed in 1893 by Caleb Bradham <br />
-            and introduced as Brad's Drink, it was renamed as Pepsi-Cola in
-            1898, and then shortened to Pepsi in 1961.
+            MealMagic is a website that helps our users think! Yes, you don't
+            need to start thinking of what to make for breakfast, lunch or
+            dinner, Mealmagic helps to provide you with various recipes from
+            around the world using ingredients you already have at home. <br />
+            Whether you're a seasoned chef or just starting out in the kitchen,
+            MealMagic has everything you need to take your cooking skills to the
+            next level <br />
           </p>
           <div className="button">
-        <button class="btn3">Sign Up Here</button>
-      </div>
+            <Link to="/register">
+              <button class="btn3">Sign Up Here</button>
+            </Link>
+            <Outlet />
+          </div>
         </div>
         <div class="pepsi">
-          <img src={ingredientsImg} alt="image" />
+          <img className="home_img" src={ingredientsImg} alt="image" />
         </div>
       </div>
-      
     </div>
   );
 }
