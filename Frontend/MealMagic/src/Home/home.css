@@ -44,3 +44,26 @@ padding: 0.5rem;
     margin-top: 2rem;
     
 }
+.loggedout{
+    
+ background-image: url("../assets/home_img.webp"); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /*width: 100vw;*/
+    border: red 2px solid;
+}
+.content{
+    border: 2px red solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+}
+.pepsi{
+    border: 2px red solid;
+}
+.text{
+    width: 15em;
+}

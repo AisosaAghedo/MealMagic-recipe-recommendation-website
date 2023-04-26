@@ -4,10 +4,9 @@ import { Outlet, Link, useNavigate } from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import toast, {Toaster} from 'react-hot-toast';
 
-export  default function SignupDesign(props) {
-
-  const notify = () => toast("Password and confirm password don't match")
-    
+const  SignupDesign = () =>{
+  const notify = () => toast("Password and confirm password don't match");
+  const notify_signup = () => toast("Kindly check your email to verify your account and proceed to log in") 
   const {register, watch, handleSubmit,reset, formState:{errors}} =useForm('')
   const submitRegister = (data)=>{
     if(data.password === data.confirmPassword){
@@ -26,10 +25,11 @@ export  default function SignupDesign(props) {
       body:JSON.stringify(body)
     }
 
-    fetch("http://localhost:5000/api/meal_magic/users", requestOptions)
+    fetch("http://127.0.0.1:5000/api/meal_magic/users", requestOptions)
       .then((res) => res.json())
-      .then((data) => console.log(data))
       .then(console.log(`User ${data.name} created succcesfully`))
+      .then((data) => console.log(data))
+      .then(notify_signup())
       .catch((err) => console.log(err));
     
     // reset()
@@ -137,3 +137,5 @@ export  default function SignupDesign(props) {
     </div>
   );
 }
+
+export default SignupDesign

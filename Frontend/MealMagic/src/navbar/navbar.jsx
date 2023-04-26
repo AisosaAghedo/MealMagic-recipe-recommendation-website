@@ -11,9 +11,6 @@ const LoggedIn = () => {
       <Link to="/" className="nav">
         Home
       </Link>
-      {/* <Link to="/Recipe/:ingredients" className="nav"> */}
-        {/* Recipe */}
-      {/* </Link> */}
       <Link to="about" className="nav">
         About
       </Link>
