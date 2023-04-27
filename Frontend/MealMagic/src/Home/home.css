@@ -7,19 +7,21 @@
 
 .home-container{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     color: white;
+    
 }
 .ingredients{
     background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    height: 80vh;
+    height: 60vh;
     border-radius: 20px;
+    padding: 2rem 1rem;
 }
 h2{
 margin-bottom: 1rem;
@@ -48,11 +50,14 @@ padding: 0.5rem;
     
 }
 .available{
-    padding: 0.5rem;
+    width: 70%;
+    text-align: center;
+    margin-top: 2rem;
 }
 .loggedout{
     
- background-image: url("../assets/teal.png"); 
+ /* background-image: url("../assets/teal.png");  */
+ background-color: aliceblue;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -65,11 +70,12 @@ padding: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    padding: 3rem ;
+    /* margin-top: 20px;
     margin-left: 9px;
     margin-right: 9px;
     padding: 50px;
-    border-radius: 100px;
+    border-radius: 100px; */
 }
 .pepsi{
     /*border: 2px red solid;*/
@@ -86,16 +92,14 @@ home_img{
     margin-top: 25px;
     margin: 5px, 5px;
     align-items: center;
-    background-color: white;
+    background-color: #05BFDB;
     border: 1px solid white;
     border-radius: 50px;
-    color: teal;
     padding: 1em;
     font-size: 16px;
-
-}
-strong{
     color: white;
+    font-weight: bold;
+
 }
 .para{
     font-size: 17px;

@@ -87,7 +87,7 @@ const AboutUs = () => {
             </div>
             <div className="col-1-2">
               <address className="footer-address">
-                <h3>Bankend Team</h3>
+                <h3>Backend Team</h3>
                 Yaekob Demisse
                 <br />
                 <a href="https://github.com/Jamescog" className="github-link">

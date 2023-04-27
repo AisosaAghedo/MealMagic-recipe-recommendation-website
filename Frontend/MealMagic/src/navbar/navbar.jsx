@@ -15,14 +15,15 @@ const LoggedIn = () => {
         About
       </Link>
 
-        <Link className="nav"
-          to="/login"
-          onClick={() => {
-            logout();
-          }}
-        >
-          Log Out
-        </Link>
+      <Link
+        className="nav"
+        to="/login"
+        onClick={() => {
+          logout();
+        }}
+      >
+        Log Out
+      </Link>
 
       <Outlet />
     </>
@@ -38,7 +39,7 @@ const LoggedOut = () => {
         <Link to="/login" className="nav">
           Login
         </Link>
-        <Link to="about" className="nav">
+        <Link to="/about" className="nav">
           About
         </Link>
         <Outlet />

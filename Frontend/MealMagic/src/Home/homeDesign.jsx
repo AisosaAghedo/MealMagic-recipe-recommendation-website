@@ -8,6 +8,7 @@ import { Outlet, Link } from "react-router-dom";
 
 const Loggedin_Home = ()=>{
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -16,6 +17,7 @@ const Loggedin_Home = ()=>{
   } = useForm("");
   const submitIngredients = (data) => {
     navigate(`/Recipe/${data.ingredients}`);
+    setIsLoading(true);
   };
 
   return (
@@ -23,10 +25,11 @@ const Loggedin_Home = ()=>{
       <div className="home-container">
         <div className="ingredients">
           <label htmlFor="Ingrediets" className="label">
-            <h2>please enter list of ingredients available</h2>
+            <h2>Please enter list of ingredients available</h2>
           </label>
           <input
             className="home_input
+
         "
             type="text"
             placeholder="Ingredients"
@@ -44,7 +47,7 @@ const Loggedin_Home = ()=>{
           <button
             type="submit"
             className="home-btn"
-            onClick={handleSubmit(submitIngredients)}
+            onClick={handleSubmit(submitIngredients)} 
           >
             Get Recommendation
           </button>
@@ -58,10 +61,10 @@ const Loggedin_Home = ()=>{
 const LoggedOut_Home = ()=>{
   return (
     <div className="loggedout">
-      <div class="content">
-        <div class="text">
+      <div className="content">
+        <div className="text"> 
           <h2>
-            MealMagic Recipe <strong> Recommendation</strong>
+            MealMagic Recipe Recommendation
           </h2>
 
           <p className="para">
@@ -75,12 +78,12 @@ const LoggedOut_Home = ()=>{
           </p>
           <div className="button">
             <Link to="/register">
-              <button class="btn3">Sign Up Here</button>
+              <button className="btn3">Sign Up Here</button>
             </Link>
             <Outlet />
           </div>
         </div>
-        <div class="pepsi">
+        <div className="pepsi">
           <img className="home_img" src={ingredientsImg} alt="image" />
         </div>
       </div>

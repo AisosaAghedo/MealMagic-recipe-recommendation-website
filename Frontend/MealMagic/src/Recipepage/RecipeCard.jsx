@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from 'react-router-dom'
+import {Audio, Oval} from 'react-loader-spinner'
+
 
 
 const RecipeCard = () => {
   const [recipes, setRecipes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  
 
 
   function getRecipes() {
@@ -39,6 +44,7 @@ const RecipeCard = () => {
       let list_of_recipes = []
       for (let value of data.suggested_recipe) {
         fetchOptions.body = JSON.stringify({ name: value[0] });
+        setIsLoading(true);
         fetch("http://localhost:5000/api/meal_magic/get_recipes", fetchOptions)
           .then((res) => res.json())
           .then((data) => {
@@ -49,46 +55,60 @@ const RecipeCard = () => {
               console.log(list_of_recipes);
               // list_of_recipes.shift()
               setRecipes(list_of_recipes);
+              setIsLoading(false);
             }
           })
       }
     })
     .catch((err) => console.log(err));
+    
   }, [])
-  
   return (
-    <div className="main">
+    <>
       <h1 className="h1">Recommended Recipes</h1>
-      {recipes.map((recipe) => (
-      <div className="recipe_" key={recipe.id}>
-        <div className="recipe_name">
-          <h2>{recipe.name}</h2>
-          </div>
-          <div className="recipe_container">
-            <div className="recipe_contain">
-              <img className="image" src={recipe.img_url} />
-              <h3 className="img_name">Image of {recipe.name}</h3>
+      {!isLoading ? (
+        <div className="main">
+          {recipes.map((recipe) => (
+            <div className="recipe_" key={recipe.id}>
+              <div className="recipe_name">
+                <h2>{recipe.name}</h2>
               </div>
-              <div className="recipe_instructions">
-                <div className="recipe_ingredients">
-                  <h3>Ingredients</h3>
-                  {recipe.ingredients.join(",")}
+              <div className="recipe_container">
+                <div className="recipe_contain">
+                  <img className="image" src={recipe.img_url} />
+                  <h3 className="img_name">Image of {recipe.name}</h3>
+                </div>
+                <div className="recipe_instructions">
+                  <div className="recipe_ingredients">
+                    <h3>Ingredients</h3>
+                    <p className="recipe_content">
+                      {recipe.ingredients.join(",")}
+                    </p>
                   </div>
                   <div className="recipe_directions">
                     <details>
                       <summary>Directions</summary>
-                      <p>{recipe.directions.join(".")}</p>
-                      </details>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      ))}
-                      </div>
-                      );
-  
-   
-
+                      <p className="recipe_content">
+                        {recipe.directions.join(".")}
+                      </p>
+                    </details>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <Oval
+          width={80}
+          height={80}
+          ariaLabel="loading"
+          wrapperClass="wrapper-class"
+          wrapperStyle={{}}
+        />
+      )}
+    </>
+  );
   
 }
 export default RecipeCard;
