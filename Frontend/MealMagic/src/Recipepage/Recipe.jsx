@@ -8,8 +8,9 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <RecipeCard />
+      <RecipeCard/>
+      
     </div>
-  )
+  );
 };
 export default Home;

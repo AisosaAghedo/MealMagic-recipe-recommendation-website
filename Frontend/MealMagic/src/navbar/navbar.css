@@ -2,10 +2,10 @@
  display: flex;
  align-items: center;
  justify-content: space-between;
- padding: 0.1rem;
+ padding: 0.8rem 2.5rem;
  background-color: teal;
  color: #fff;
- font-family: cursive;
+ /* font-family: cursive; */
 }
 .nav-holder{
  display: flex;
@@ -19,8 +19,8 @@
   
 }
 .img{
- width: 50px;
- height: 50px;
+ width: 30px;
+ height: 30px;
  border: 2px solid white;
  border-radius: 50%;
  display: grid;
