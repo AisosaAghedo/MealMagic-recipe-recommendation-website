@@ -5,7 +5,7 @@ import Logo from '../assets/Logo.jpg';
 
 const AboutUs = () => {
   return (
-    <>
+    <div className="aboutUs">
       <div id="about" className="section">
         <div className="about_container">
           <header className="section-header">
@@ -14,9 +14,11 @@ const AboutUs = () => {
           </header>
           <div className="section-body">
             <div className="row">
-              <div className="col-1-2">
-                <img src={Logo} alt="" width="460" height="460" />
+              <div className="about-img">
+                <img src={Logo} alt="" />
               </div>
+
+              {/* <div className="col-1-2"></div> */}
               <div className="col-1-2">
                 <h3>Who are we</h3>
                 <p className="p">
@@ -32,9 +34,9 @@ const AboutUs = () => {
                   We don't only care about individual recipes, but about
                   planning and organizing entire meals for you and your friends
                   and family. With MealMagic, you can easily browse through a
-                  vast collection of recipes, Whether you're a seasoned chef or just starting
-                  out in the kitchen, MealMagic has everything you need to take
-                  your cooking skills to the next level
+                  vast collection of recipes, Whether you're a seasoned chef or
+                  just starting out in the kitchen, MealMagic has everything you
+                  need to take your cooking skills to the next level
                 </p>
                 <h3>How we work</h3>
                 <p className="p">
@@ -63,7 +65,7 @@ const AboutUs = () => {
           <div className="row">
             <div className="col-1-2">
               <address className="footer-address">
-                <h3>Frontend Team</h3>
+                <h3 className="team">Frontend Team</h3>
                 Aisosa Aghedo
                 <br />
                 <a
@@ -87,7 +89,7 @@ const AboutUs = () => {
             </div>
             <div className="col-1-2">
               <address className="footer-address">
-                <h3>Backend Team</h3>
+                <h3 className="team">Backend Team</h3>
                 Yaekob Demisse
                 <br />
                 <a href="https://github.com/Jamescog" className="github-link">
@@ -108,9 +110,8 @@ const AboutUs = () => {
             </div>
           </div>
         </div>
-            {" "}
       </footer>
-    </>
+    </div>
   );
 }
 

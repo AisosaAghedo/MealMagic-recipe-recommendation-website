@@ -4,7 +4,7 @@ import Navbar from "../navbar/navbar";
 import RecipeCard from "./RecipeCard";
 import "./Recipe.css";
 
-const Home = () => {
+const Recipe = () => {
   return (
     <div>
       <Navbar />
@@ -13,4 +13,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Recipe;

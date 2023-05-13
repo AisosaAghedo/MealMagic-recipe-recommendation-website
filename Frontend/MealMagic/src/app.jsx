@@ -11,6 +11,7 @@ import Layout from "./layout/layout";
 import Login from "./signin/login";
 import Recipe from "./Recipepage/Recipe";
 import About from "./AboutPage/About";
+import Recipe_details from "./recipe-details";
 
 
 const router = createBrowserRouter(
@@ -19,9 +20,10 @@ const router = createBrowserRouter(
       <Route>
         <Route path="/register" element={<Layout />} />
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/Recipe/:ingredients" element={<Recipe />} />
-        <Route path="/About" element={<About/>} />
+        <Route path="/Recipe_details/:name" element={<Recipe_details />} />
+        <Route path="/About" element={<About />} />
       </Route>
     </>
   )

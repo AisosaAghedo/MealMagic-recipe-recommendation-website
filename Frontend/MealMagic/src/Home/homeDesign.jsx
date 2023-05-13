@@ -8,7 +8,6 @@ import { Outlet, Link } from "react-router-dom";
 
 const Loggedin_Home = ()=>{
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -17,7 +16,7 @@ const Loggedin_Home = ()=>{
   } = useForm("");
   const submitIngredients = (data) => {
     navigate(`/Recipe/${data.ingredients}`);
-    setIsLoading(true);
+    
   };
 
   return (
