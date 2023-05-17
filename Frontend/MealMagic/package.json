@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
     "alert": "^5.1.4",
+    "framer-motion": "^10.12.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
@@ -18,7 +20,8 @@
     "react-hot-toast": "^2.4.0",
     "react-loader-spinner": "^5.3.4",
     "react-router-dom": "^6.10.0",
-    "react-token-auth": "^2.3.8"
+    "react-token-auth": "^2.3.8",
+    "styled-components": "^6.0.0-rc.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
