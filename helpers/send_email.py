@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from email.message import EmailMessage
+from threading import Thread
 import ssl
 import os
 import smtplib
@@ -8,7 +9,7 @@ from smtplib import SMTPResponseException
 email_sender = os.getenv('EMAIL_SENDER')
 email_password = os.getenv('EMAIL_PWD')
 
-def send_email(subject, email, url_str):
+def send_async_email(subject, email, url_str):
 
     if subject == 'Confirm your email account':
         instruction = 'Click on link to verify email on meal magic'
@@ -34,3 +35,7 @@ def send_email(subject, email, url_str):
             smtp.sendmail(email_sender, email_receiver, em.as_string())
     except SMTPResponseException:
         raise exception
+
+
+def send_email(subject, email, url_str):
+    Thread(target=send_async_email, args=(subject, email, url_str)).start()

@@ -8,6 +8,7 @@ from . import app_views
 from helpers.send_email import send_email
 from flask_cors import cross_origin
 HOST = 'http://127.0.0.1:5000/'
+FRONT_END_HOST = 'http://localhost:5173/login'
 
 @app_views.route('/users/validate/<user_id>')
 def validate(user_id):
@@ -19,7 +20,7 @@ def validate(user_id):
         abort(404)
     user.confirmed = True
     user.save()
-    return redirect('http://localhost:5173/login')
+    return redirect(FRONT_END_HOST)
 
 
 @app_views.route('/users/forgot_passwords/<email>')
