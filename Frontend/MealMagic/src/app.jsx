@@ -11,7 +11,7 @@ import Layout from "./layout/layout";
 import Login from "./signin/login";
 import Recipe from "./Recipepage/Recipe";
 import About from "./AboutPage/About";
-import Recipe_details from "./recipe-details";
+import Recipe_details from "./Recipepage/recipe-details";
 
 
 const router = createBrowserRouter(
