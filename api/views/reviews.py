@@ -2,6 +2,7 @@
 from . import storage
 from . import Review, User, Recipe
 from . import app_views
+from flask_jwt_extended import jwt_required
 from flask import abort, jsonify, request
 
 
@@ -58,6 +59,7 @@ def review_get(review_id):
 
 @app_views.route('reviews/<review_id>', methods=['DELETE', 'PUT'],
                  strict_slashes=False)
+@jwt_required()
 def review(review_id):
     """DELETE: deletes a review, PUT: updates a review"""
     review = storage.get(Review, review_id)

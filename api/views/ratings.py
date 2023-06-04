@@ -2,6 +2,7 @@
 """
 handling of the ratings api view
 """
+from flask_jwt_extended import jwt_required
 from . import Rating, User, Recipe
 from flask import abort, jsonify, request
 from . import app_views, storage
@@ -48,6 +49,7 @@ def post_rating(recipe_id, user_id):
 
 
 @app_views.route("/ratings/<rating_id>", methods=["PUT"], strict_slashes=False)
+@jwt_required()
 def update_rating(rating_id):
     """
     updates a row on the ratings table
