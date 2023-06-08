@@ -2,11 +2,13 @@
 from . import storage
 from . import Review, User, Recipe
 from . import app_views
+from flask_jwt_extended import jwt_required
 from flask import abort, jsonify, request
 
 
 @app_views.route('/recipes/<recipe_id>/reviews',
                  methods=['GET'], strict_slashes=False)
+@jwt_required()
 def get_reviews(recipe_id):
     """
     gets all reviews under a particular recipe
@@ -24,6 +26,7 @@ def get_reviews(recipe_id):
 
 @app_views.route('/recipes/<recipe_id>/<user_id>/reviews',
                  methods=['POST'], strict_slashes=False)
+@jwt_required()
 def user_review(recipe_id, user_id):
     """
     adds a new review by a user
@@ -47,6 +50,7 @@ def user_review(recipe_id, user_id):
 
 
 @app_views.route('reviews/<review_id>', strict_slashes=False)
+@jwt_required()
 def review_get(review_id):
     """GET:gets a review using its id"""
     review = storage.get(Review, review_id)
@@ -58,6 +62,7 @@ def review_get(review_id):
 
 @app_views.route('reviews/<review_id>', methods=['DELETE', 'PUT'],
                  strict_slashes=False)
+@jwt_required()
 def review(review_id):
     """DELETE: deletes a review, PUT: updates a review"""
     review = storage.get(Review, review_id)

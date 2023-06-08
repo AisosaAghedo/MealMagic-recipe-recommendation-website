@@ -4,7 +4,7 @@ definition of blueprint to handle
 functionalities involving user aithentication
 """
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
 from models import storage
 from models.user import User
 from flask_jwt_extended import create_access_token
@@ -26,18 +26,21 @@ def login():
     password = request.json.get("password", None)
     user = storage.get(User, email=email)
 
+    if user is None or password is None:
+        return jsonify({"msg": "Please check your login details and try again"}), 401
 
-    if user is None or user.confirm_pwd(password) is False:
+    if user.confirm_pwd(password) is False:
         return jsonify({"msg": "Please check your login details and try again"}), 401
 
     if user.confirmed is False:
          return jsonify({"msg": "Account has not been verified"}), 401
 
-    access_token = create_access_token(identity=email)
-    refresh_token = create_refresh_token(identity=email)
+    access_token = create_access_token(identity={'email': email, 'id': user.id}, fresh=True)
+    refresh_token = create_refresh_token(identity={'email':email, 'id': user.id})
     return jsonify(
                 {"access_token": access_token, "refresh_token": refresh_token}
             )
+
 
 @auth.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)

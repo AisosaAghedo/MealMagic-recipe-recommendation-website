@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """api to interact with the users table"""
 from . import User
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 from helpers.random_string import string_gen
 from . import storage
 from flask import jsonify, request, abort, redirect
@@ -8,6 +10,7 @@ from . import app_views
 from helpers.send_email import send_email
 from flask_cors import cross_origin
 HOST = 'http://127.0.0.1:5000/'
+FRONT_END_HOST = 'http://localhost:5173/login'
 
 @app_views.route('/users/validate/<user_id>')
 def validate(user_id):
@@ -19,7 +22,7 @@ def validate(user_id):
         abort(404)
     user.confirmed = True
     user.save()
-    return redirect('http://localhost:5173/login')
+    return redirect(FRONT_END_HOST)
 
 
 @app_views.route('/users/forgot_passwords/<email>')
@@ -39,6 +42,7 @@ def change_password(email):
 
 
 @app_views.route("/users/<user_id>", methods=['GET'], strict_slashes=False)
+@jwt_required()
 def get_user(user_id):
     """
     Get: returns a user in JSON format
@@ -50,54 +54,48 @@ def get_user(user_id):
     return jsonify(user.to_dict())
 
 
-@app_views.route("/users", methods=['GET', 'POST'],
+@app_views.route("/users", methods=['POST'],
 strict_slashes=False)
-def get_and_post_users():
+def post_users():
     """ 
-    GET: returns all users.
     POST: creates and saves a new user
     """
-    if request.method == "GET":
-        users = []
+    url_string = HOST + 'api/meal_magic/users/validate/'
+    req = request.get_json()
 
-        for user in storage.all(User).values():
-            users.append(user.to_dict())
-        return jsonify(users)
-
-    else:
-        url_string = HOST + 'api/meal_magic/users/validate/'
-        req = request.get_json()
-
-        if req is None:
-            abort(400, description="Not a json")
-        if req.get('email') is None:
-            abort(400, description="Missing email")
-        if storage.get(User, email=req['email']):
-            abort(400, description="Email is in use")
-        if req.get("password") is None:
-            abort(400, description="Missing password")
-        if req.get('name') is None:
-            abort(400, description="Missing name")
-        user = User(**req)
-        user.save()
-        send_email('Confirm your email account', user.email, url_string + user.id)
-        return jsonify(user.to_dict()), 201
-
+    if req is None:
+        abort(400, description="Not a json")
+    if req.get('email') is None:
+        abort(400, description="Missing email")
+    if storage.get(User, email=req['email']):
+        abort(400, description="Email is in use")
+    if req.get("password") is None:
+        abort(400, description="Missing password")
+    if req.get('name') is None:
+        abort(400, description="Missing name")
+    user = User(**req)
+    user.save()
+    send_email('Confirm your email account', user.email, url_string + user.id)
+    return jsonify(user.to_dict()), 201
 
 
 @app_views.route('/users/<user_id>', methods=["PUT", "DELETE"],
                  strict_slashes=False)
+@jwt_required(fresh=True)
 def put_and_delete(user_id):
     """
     PUT: updates user information
     DELETE: deletes user account
     """
     user = storage.get(User, user_id)
+    current_user = get_jwt_identity()
+     
     if user is None:
             abort(404)
-
+    if current_user['id'] != user_id:
+        abort(404)
     if request.method == 'PUT':
-        restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed']
+        restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed', 'email']
         req = request.get_json()
 
         if req is None:

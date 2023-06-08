@@ -2,12 +2,14 @@
 """
 handling of the ratings api view
 """
+from flask_jwt_extended import jwt_required
 from . import Rating, User, Recipe
 from flask import abort, jsonify, request
 from . import app_views, storage
 
 
 @app_views.route("/recipe/<recipe_id>/ratings", strict_slashes=False)
+@jwt_required()
 def recipe_ratings(recipe_id):
     """
     GET: retrives the ratings on a recipe
@@ -25,6 +27,7 @@ def recipe_ratings(recipe_id):
 
 @app_views.route("/recipe/<recipe_id>/<user_id>/ratings", methods=["POST"],
                  strict_slashes=False)
+@jwt_required()
 def post_rating(recipe_id, user_id):
     """
     POST: adds a new rating to the recipe
@@ -48,6 +51,7 @@ def post_rating(recipe_id, user_id):
 
 
 @app_views.route("/ratings/<rating_id>", methods=["PUT"], strict_slashes=False)
+@jwt_required()
 def update_rating(rating_id):
     """
     updates a row on the ratings table
@@ -55,10 +59,13 @@ def update_rating(rating_id):
     rating = storage.get(Rating, rating_id)
     req = request.get_json()
 
+
     if req is None:
         abort(400, description="Not a json")
     if req.get('rate_number') is None:
         abort(400, description='Missing rate_number')
+    if rating is None:
+        abort(404)
 
     rating.rate_number = req['rate_number']
     rating.save()

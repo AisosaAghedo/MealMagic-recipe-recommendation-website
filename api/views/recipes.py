@@ -6,10 +6,12 @@ from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
 from helpers import cache
 import json
+from flask_jwt_extended import jwt_required
 from engine_src.recommender import recommend_recipes
 from ast import literal_eval
 
 @app_views.route("/users/<user_id>/recipes", methods=['GET', 'POST'], strict_slashes=False)
+@jwt_required()
 def saved_recipes(user_id):
     """ GET: gets all recipes by a user
     POST: adds a new recipe for a user"""
@@ -37,7 +39,7 @@ def saved_recipes(user_id):
 
         recipe = storage.get(Recipe, None, req.get('name'))
         if recipe is None:
-            abort(400, description='recipe unavailable')
+            abort(404, description='recipe not found')
         recipe.users.append(user)
         recipe.save()
         recipe = recipe.to_dict()
@@ -47,6 +49,7 @@ def saved_recipes(user_id):
 
 @app_views.route('/get_recipes', methods=['POST'],
 strict_slashes=False)
+@jwt_required()
 def find_recipe():
     """
     finds recipe from db using passed name in json
@@ -99,6 +102,7 @@ def get_recipe():
 
 @app_views.route('/recipe_search/<user_id>',
                  methods=['GET'], strict_slashes=False)
+@jwt_required()
 def search_recipe(user_id):
     """
     searches for recipes a user saved
@@ -119,6 +123,7 @@ def search_recipe(user_id):
 
 
 @app_views.route("/recipes_rating", strict_slashes=False)
+@jwt_required()
 def get_average_rating():
     """
     gets average rating on a recipe
