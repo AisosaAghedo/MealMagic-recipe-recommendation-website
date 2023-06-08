@@ -9,6 +9,7 @@ from . import app_views, storage
 
 
 @app_views.route("/recipe/<recipe_id>/ratings", strict_slashes=False)
+@jwt_required()
 def recipe_ratings(recipe_id):
     """
     GET: retrives the ratings on a recipe
@@ -26,6 +27,7 @@ def recipe_ratings(recipe_id):
 
 @app_views.route("/recipe/<recipe_id>/<user_id>/ratings", methods=["POST"],
                  strict_slashes=False)
+@jwt_required()
 def post_rating(recipe_id, user_id):
     """
     POST: adds a new rating to the recipe
@@ -49,7 +51,7 @@ def post_rating(recipe_id, user_id):
 
 
 @app_views.route("/ratings/<rating_id>", methods=["PUT"], strict_slashes=False)
-@jwt_required()
+@jwt_required(fresh=True)
 def update_rating(rating_id):
     """
     updates a row on the ratings table

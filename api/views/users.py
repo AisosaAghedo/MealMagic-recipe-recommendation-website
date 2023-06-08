@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """api to interact with the users table"""
 from . import User
+from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from helpers.random_string import string_gen
 from . import storage
@@ -41,6 +42,7 @@ def change_password(email):
 
 
 @app_views.route("/users/<user_id>", methods=['GET'], strict_slashes=False)
+@jwt_required()
 def get_user(user_id):
     """
     Get: returns a user in JSON format
@@ -79,18 +81,20 @@ def post_users():
 
 @app_views.route('/users/<user_id>', methods=["PUT", "DELETE"],
                  strict_slashes=False)
-@jwt_required()
+@jwt_required(fresh=True)
 def put_and_delete(user_id):
     """
     PUT: updates user information
     DELETE: deletes user account
     """
     user = storage.get(User, user_id)
+    current_user = get_jwt_identity()
+    print(current_user)
     if user is None:
             abort(404)
 
     if request.method == 'PUT':
-        restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed']
+        restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed', 'email']
         req = request.get_json()
 
         if req is None:

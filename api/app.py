@@ -20,7 +20,7 @@ app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(auth)
 app.config["JWT_SECRET_KEY"] = "erfij3ouRH4OUR4OR3ORN"
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=30)
 jwt = JWTManager(app)
 
 @app.after_request
@@ -28,7 +28,7 @@ def refresh_expiring_jwts(response):
     try:
         exp_timestamp = get_jwt()["exp"]
         now = datetime.now(timezone.utc)
-        target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+        target_timestamp = datetime.timestamp(now + timedelta(seconds=20))
         if target_timestamp > exp_timestamp:
             access_token = create_access_token(identity=get_jwt_identity())
             set_access_cookies(response, access_token)
