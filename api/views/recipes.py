@@ -6,6 +6,7 @@ from . import User, Recipe, app_views, storage
 from flask import abort, jsonify, request
 from helpers import cache
 import json
+from flask_jwt_extended import jwt_required
 from engine_src.recommender import recommend_recipes
 from ast import literal_eval
 

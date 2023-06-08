@@ -35,8 +35,8 @@ def login():
     if user.confirmed is False:
          return jsonify({"msg": "Account has not been verified"}), 401
 
-    access_token = create_access_token(identity=email)
-    refresh_token = create_refresh_token(identity=email)
+    access_token = create_access_token(identity={'email': email, 'id': user.id}, fresh=True)
+    refresh_token = create_refresh_token(identity={'email':email, 'id': user.id})
     return jsonify(
                 {"access_token": access_token, "refresh_token": refresh_token}
             )

@@ -89,10 +89,11 @@ def put_and_delete(user_id):
     """
     user = storage.get(User, user_id)
     current_user = get_jwt_identity()
-    print(current_user)
+     
     if user is None:
             abort(404)
-
+    if current_user['id'] != user_id:
+        abort(404)
     if request.method == 'PUT':
         restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed', 'email']
         req = request.get_json()
