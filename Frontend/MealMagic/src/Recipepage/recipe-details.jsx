@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { useParams } from "react-router-dom";
-import Navbar from "./navbar/navbar";
+import Navbar from "../navbar/navbar";
 
 const Recipe_details = () => {
+  /*
+  This function displays the details of each recipe  */
   let params = useParams();
   const [details, setDetails] = useState({});
-  const [activeTab, setActiveTab] = useState("directions")
+  const [activeTab, setActiveTab] = useState("directions");
 
   const requestOptions = {
+    /* This is the second parameter of the fetch method.
+    It uses the name of the recipe gotten from the useParams hook to send request to the api */
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -70,6 +74,7 @@ const Recipe_details = () => {
   );
 };
 
+// Using styled components to style the page
 const Wrapper = styled.div`
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -92,7 +97,8 @@ const Wrapper = styled.div`
     margin-bottom: 2rem;
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin-top: 2rem;
     width: 50vw;
   }
@@ -130,6 +136,5 @@ const Info = styled.div`
     margin-left: 1rem;
   }
 `;
-
 
 export default Recipe_details;
