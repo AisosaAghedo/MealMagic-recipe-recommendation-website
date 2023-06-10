@@ -6,15 +6,16 @@ import { useAuth, logout } from "../signin/Signin";
 import ingredientsImg from '../assets/ingredients_img.jpg'
 import { Outlet, Link } from "react-router-dom";
 
-const Loggedin_Home = ()=>{
+
+export default function HomeDesign(){
+  /* This function return a page for users to
+  input ingredients available */
+
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm("");
+  const {register,handleSubmit,reset,formState: { errors },} = useForm("");
+  
   const submitIngredients = (data) => {
+    /* This function navigates to the recipe page and takes ingedients entered as url parameters */
     navigate(`/Recipe/${data.ingredients}`);
     
   };
@@ -57,42 +58,4 @@ const Loggedin_Home = ()=>{
   
 }
 
-const LoggedOut_Home = ()=>{
-  return (
-    <div className="loggedout">
-      <div className="content">
-        <div className="text"> 
-          <h2>
-            MealMagic Recipe Recommendation
-          </h2>
 
-          <p className="para">
-            MealMagic is a website that helps our users think! Yes, you don't
-            need to start thinking of what to make for breakfast, lunch or
-            dinner, Mealmagic helps to provide you with various recipes from
-            around the world using ingredients you already have at home. <br />
-            Whether you're a seasoned chef or just starting out in the kitchen,
-            MealMagic has everything you need to take your cooking skills to the
-            next level <br />
-          </p>
-          <div className="button">
-            <Link to="/register">
-              <button className="btn3">Sign Up Here</button>
-            </Link>
-            <Outlet />
-          </div>
-        </div>
-        <div className="pepsi">
-          <img className="home_img" src={ingredientsImg} alt="image" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function HomeDesign() {
-  const [logged] = useAuth();
-
-  return <div>{logged ? <Loggedin_Home /> : <LoggedOut_Home />}</div>;
-  
-}

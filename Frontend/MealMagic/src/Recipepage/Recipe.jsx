@@ -5,6 +5,7 @@ import RecipeCard from "./RecipeCard";
 import "./Recipe.css";
 
 const Recipe = () => {
+  // This returns the Recipe component
   return (
     <div>
       <Navbar />
