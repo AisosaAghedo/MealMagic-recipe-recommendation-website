@@ -12,9 +12,6 @@ class Recipe(BaseModel, Base):
     ingredients = Column(Text)
     directions = Column(Text)
     recipe_url = Column(String(100))
-    users = relationship('User', back_populates='saved_recipes', secondary='link')
-    reviews = relationship("Review", backref="recipe", cascade = "all, delete, delete-orphan")
-    ratings = relationship("Rating", backref="recipe", cascade = "all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """initialization of a Recipe object"""

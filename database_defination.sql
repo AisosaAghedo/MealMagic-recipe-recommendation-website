@@ -26,38 +26,6 @@ CREATE TABLE recipes (
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE ratings (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    rate_number INT NOT NULL,
-    user_id VARCHAR(60) NOT NULL,
-    recipe_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes (id),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE reviews (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    content TEXT,
-    user_id VARCHAR(60) NOT NULL,
-    recipe_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (recipe_id) REFERENCES recipes (id),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE link (
-    users_id VARCHAR(65),
-    recipes_id INT,
-    PRIMARY KEY (users_id, recipes_id),
-    FOREIGN KEY (users_id) REFERENCES users (id),
-    FOREIGN KEY (recipes_id) REFERENCES recipes (id),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
 
 -- CREATE USER 'team'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON recipe_recommendation.* TO 'team'@'localhost';

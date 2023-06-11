@@ -41,13 +41,14 @@ def change_password(email):
     return jsonify({'msg': 'password changed'})
 
 
-@app_views.route("/users/<user_id>", methods=['GET'], strict_slashes=False)
+@app_views.route("/users", methods=['GET'], strict_slashes=False)
 @jwt_required()
-def get_user(user_id):
+def get_user():
     """
     Get: returns a user in JSON format
     """
-    user = storage.get(User, user_id)
+    current_user = get_jwt_identity()
+    user = storage.get(User, current_user['id'])
 
     if user is None:
         abort(404)
@@ -79,21 +80,20 @@ def post_users():
     return jsonify(user.to_dict()), 201
 
 
-@app_views.route('/users/<user_id>', methods=["PUT", "DELETE"],
+@app_views.route('/users', methods=["PUT", "DELETE"],
                  strict_slashes=False)
 @jwt_required(fresh=True)
-def put_and_delete(user_id):
+def put_and_delete():
     """
     PUT: updates user information
     DELETE: deletes user account
     """
-    user = storage.get(User, user_id)
     current_user = get_jwt_identity()
+    user = storage.get(User, current_user['id'])
      
     if user is None:
             abort(404)
-    if current_user['id'] != user_id:
-        abort(404)
+
     if request.method == 'PUT':
         restricted_attr = ['id', 'created_at', 'updated_at', 'confirmed', 'email']
         req = request.get_json()
