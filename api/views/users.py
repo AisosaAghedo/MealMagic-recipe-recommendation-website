@@ -74,6 +74,7 @@ def post_users():
         abort(400, description="Missing password")
     if req.get('name') is None:
         abort(400, description="Missing name")
+    
     user = User(**req)
     user.save()
     send_email('Confirm your email account', user.email, url_string + user.id)

@@ -4,7 +4,6 @@ from threading import Thread
 import ssl
 import os
 import smtplib
-from smtplib import SMTPResponseException
 
 email_sender = os.getenv('EMAIL_SENDER')
 email_password = os.getenv('EMAIL_PWD')
@@ -33,8 +32,11 @@ def send_async_email(subject, email, url_str):
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
             smtp.login(email_sender, email_password)
             smtp.sendmail(email_sender, email_receiver, em.as_string())
-    except SMTPResponseException:
-        raise exception
+    except smtplib.SMTPException:
+        print('Error: could not send email')
+    except smtplib.socket.error:
+        print('Error: could not connect to server')
+        
 
 
 def send_email(subject, email, url_str):
