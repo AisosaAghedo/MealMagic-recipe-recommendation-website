@@ -62,5 +62,54 @@ class TestUser(TestCase):
             storage.save()
             storage.close()
 
+
+class TestError(TestCase):
+
+    def setUp(self):
+        app.testing = True
+        self.app = app.test_client()
+        self.res  = self.app.post('{}'.format(url_prefix),
+                                  json=dict(name=name, password=password, email=email))
+        user = storage.get(User, email=email)
+        user.confirmed = True # verifying the user email so as to enable login
+        user.save()
+        self.login_res = self.app.post('/auth/login', json={'email':email, 'password': password});
+
+
+    def test_postUser_ErrorHandler(self):
+        res  = self.app.post('{}'.format(url_prefix))
+        self.assertEqual(400, res.status_code)
+        res  = self.app.post('{}'.format(url_prefix), json=dict(name=name, password=password))
+        self.assertEqual(400, res.status_code)
+        res  = self.app.post('{}'.format(url_prefix), json={'name': name, 'password': password, 'email': email}) #email already in use
+        self.assertEqual(400, res.status_code)
+        res  = self.app.post('{}'.format(url_prefix), json={'name': name, 'email': 'testingmail@email.com'}) #missing password
+        self.assertEqual(400, res.status_code)
+        res  = self.app.post('{}'.format(url_prefix), json={'password': password, 'email': 'testingmail@email.com'})
+        self.assertEqual(400, res.status_code)
+
+
+    def test_updateAndDeleteUser_ErrorHandler(self):
+        res = self.app.post('/auth/login', json={'email':email, 'password': password})
+        token = self.login_res.json['access_token']
+        headers = { 'Authorization': 'Bearer ' + token}
+
+        res = self.app.put('{}'.format(url_prefix))
+        self.assertEqual(401, res.status_code)
+        res = self.app.put('{}'.format(url_prefix), headers=headers)
+        self.assertEqual(400, res.status_code)
+        self.tearDown() # deleting user so 404 err is thrown
+        res = self.app.put('{}'.format(url_prefix), headers=headers)
+        self.assertEqual(404, res.status_code)
+
+
+
+    def tearDown(self):
+        user = storage.get(User, email=email)
+        if user:
+            storage.delete(user)
+            storage.save()
+            storage.close()
+
 if __name__ == '__main__':
     unittest.main()
