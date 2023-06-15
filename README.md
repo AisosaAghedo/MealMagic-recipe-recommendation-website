@@ -57,9 +57,11 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
   ## Contacts
   <p>
    <b>Frontend Team</b><br/>
-    Aisosa Aghedo<br/>
-    [Github](https://github.com/AisosaAghedo)<br/>
-    Email : allysonaghedo@gmail.com<br/>
+    <p>
+      Aisosa Aghedo<br/>
+      [Github](https://github.com/AisosaAghedo)<br/>
+      Email : allysonaghedo@gmail.com<br/>
+    </p>
 
     Mustapha Olamide Usman<br/>
     [Github]()<br/>
