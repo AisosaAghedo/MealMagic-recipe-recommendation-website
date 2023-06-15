@@ -28,7 +28,7 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm i
 MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
 ```
 ## Features
-[![preview page]()]
+[![preview page](assets/'Screenshot (90).png')]
 ## Dependencies
 - HTML
 - CSS
