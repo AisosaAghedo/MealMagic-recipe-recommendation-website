@@ -32,7 +32,7 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
 <img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(92).png" alt="login page"/><br/><br/>
 #### Available ingredients entered is used to filter dishes matching that specification
 <img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(93).png" alt="ingredients page"/><br/><br/>
-#### Several dishes made with those igredients are displayed
+#### Several dishes made with those ingredients are displayed
 <img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(94).png" alt="recipes page"/><br/><br/>
 #### Detailed instructions on preparation of each meal
 <img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(90).png" alt="instructions to prepare meal"/><br/><br/>
@@ -53,3 +53,26 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
 - Flask-jwt-extended
 - BeautifulSoup
 - Requests
+
+  ## Contacts
+  <p>
+   <b>Frontend Team</b>
+    Aisosa Aghedo
+    [Github]()
+    Email : allysonaghedo@gmail.com
+
+    Mustapha Olamide Usman
+    Github
+    Email : Horlamyday@gmail.com
+  </p>
+
+  <p>
+  <b>Backend Team</b> 
+  Yaekob Demisse
+  [Github]()
+  Email : jamescog72@gmail.com
+
+  Nosakhare Aghedo
+  [Github](https://github.com/Coder1967)
+  Email : nosakhareaghedo42@gmail.com
+  </p>
