@@ -6,7 +6,7 @@ MealMagic is A website that recommends recipes based on different information fr
 [Usage](#Usage)<br/>
 [Features](#Features)<br/>
 [Dependencies](#Dependencies)<br/>
-[Contact](#Contact)
+[Contact](#Contacts)
 
   
 ## Installation
@@ -58,7 +58,7 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
   <p>
    <b>Frontend Team</b><br/>
     Aisosa Aghedo<br/>
-    [Github](https://github.com/AisosaAghedo)<br/>
+     [Github](https://github.com/AisosaAghedo)<br/>
     Email : allysonaghedo@gmail.com<br/>
 
     Mustapha Olamide Usman<br/>
