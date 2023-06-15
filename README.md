@@ -22,7 +22,7 @@ MealMagic is A website that recommends recipes based on different information fr
 - BeautifulSoup
 - Requests
 
-## installation {#installation}
+## installation{#installation}
 ```
 git clone https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website
 ```
