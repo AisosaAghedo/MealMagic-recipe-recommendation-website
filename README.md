@@ -28,7 +28,15 @@ MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm i
 MealMagic-recipe-recommendation-website/Frontend/mealMagic$ npm run dev
 ```
 ## Features
-[preview page](https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(90).png)
+#### The login page
+<img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(92).png" alt="login page"/>
+#### Available ingredients entered is used to filter dishes matching that specification
+<img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(93).png" alt="ingredients page"/>
+#### Several dishes made with those igredients are displayed
+<img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(94).png" alt="recipes page"/>
+#### Detailed instructions on preparation of each meal
+<img src="https://github.com/AisosaAghedo/MealMagic-recipe-recommendation-website/blob/backend_api/assets/Screenshot%20(90).png" alt="instructions to prepare meal"/>
+We plan to add a password retrieval functionality in the future.
 ## Dependencies
 - HTML
 - CSS
