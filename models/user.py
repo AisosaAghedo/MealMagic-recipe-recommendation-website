@@ -17,9 +17,6 @@ class User(BaseModel, Base):
     email =  Column(String(50), nullable=False, unique=True)
     confirmed = Column(Boolean, default=False)
     password = Column(String(60), nullable=False)
-    saved_recipes = relationship("Recipe", back_populates='users', secondary='link')
-    reviews = relationship("Review", backref="reviewer", cascade = "all, delete, delete-orphan")
-    ratings = relationship("Rating", backref="rater", cascade = "all, delete, delete-orphan")
 
     def __init__(self, *args, **kwargs):
         """initializes user"""

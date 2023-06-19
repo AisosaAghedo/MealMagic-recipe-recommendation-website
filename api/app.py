@@ -4,11 +4,11 @@ from flask_cors import CORS
 import models
 from models import storage
 from datetime import datetime, timezone, timedelta
-from .authentication import auth
+from .authorization import auth
 from flask import request
 
 from flask_jwt_extended import create_access_token, set_access_cookies
-from flask_jwt_extended import JWTManager, get_jwt
+from flask_jwt_extended import JWTManager, get_jwt, get_jwt_identity
 
 app = Flask(__name__)
 
